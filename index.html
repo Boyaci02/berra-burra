@@ -243,28 +243,89 @@
     .hamburger.open span:nth-child(2) { opacity: 0; }
     .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-    /* Mobile menu */
+    /* Mobile menu – fullscreen overlay */
     .mobile-menu {
-      display: none;
       position: fixed;
-      top: 76px; left: 0; right: 0;
-      background: var(--cream);
-      border-bottom: 2px solid var(--blue);
-      z-index: 999;
-      padding: 24px 32px 32px;
+      inset: 0;
+      background: var(--blue);
+      z-index: 1100;
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                  visibility 0.45s;
+      visibility: hidden;
+      pointer-events: none;
     }
-    .mobile-menu.open { display: block; }
-    .mobile-menu ul { list-style: none; }
-    .mobile-menu ul li { border-bottom: 1px solid rgba(0,35,108,0.08); }
-    .mobile-menu ul li a {
+    .mobile-menu.open {
+      transform: translateX(0);
+      visibility: visible;
+      pointer-events: all;
+    }
+    .mobile-menu__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+      flex-shrink: 0;
+    }
+    .mobile-menu__logo { height: 34px; width: auto; }
+    .mobile-menu__close {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .mobile-menu__close svg { width: 28px; height: 28px; }
+    .mobile-menu__nav {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 32px;
+      overflow-y: auto;
+    }
+    .mobile-menu__nav ul { list-style: none; }
+    .mobile-menu__nav ul li {
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+    .mobile-menu__nav ul li:first-child {
+      border-top: 1px solid rgba(255,255,255,0.12);
+    }
+    .mobile-menu__nav ul li a {
       display: block;
-      padding: 16px 0;
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
+      padding: 18px 0;
+      font-family: var(--cond), var(--sans);
+      font-size: clamp(36px, 10vw, 52px);
+      font-weight: 700;
+      letter-spacing: 0.02em;
       text-transform: uppercase;
+      color: var(--white);
+      line-height: 1;
+      transition: color 0.2s;
     }
-    .mobile-menu .btn { width: 100%; margin-top: 20px; justify-content: center; }
+    .mobile-menu__nav ul li a:hover { color: var(--yellow); }
+    .mobile-menu__footer {
+      padding: 24px 32px;
+      border-top: 1px solid rgba(255,255,255,0.10);
+      display: flex;
+      gap: 28px;
+      flex-shrink: 0;
+    }
+    .mobile-menu__footer a {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.50);
+      transition: color 0.2s;
+    }
+    .mobile-menu__footer a:hover { color: var(--yellow); }
 
     /* ===========================
        HERO
@@ -1231,37 +1292,58 @@
         background-repeat: no-repeat;
         opacity: 1;
       }
-      /* Center text vertically over the full-screen image */
+      /* Full-screen photo, content bottom-aligned */
       .hero__main {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        align-items: flex-start;
+        justify-content: flex-end;
         min-height: 100svh;
-        padding: 100px 32px 80px;
-        text-align: center;
+        padding: 0 28px 64px;
+        text-align: left;
         gap: 0;
+      }
+      /* Stronger gradient at bottom for readability */
+      .hero::before {
+        background-image: linear-gradient(
+          to bottom,
+          rgba(0,35,108,0.10) 0%,
+          rgba(0,35,108,0.45) 45%,
+          rgba(0,0,0,0.85) 100%
+        );
       }
       /* Hide the circle/visual on mobile */
       .hero__visual { display: none; }
 
       /* Text colors for dark background */
-      .hero__est { justify-content: center; margin-bottom: 20px; }
+      .hero__est { justify-content: flex-start; margin-bottom: 14px; }
       .hero__est-line { background: rgba(255,255,255,0.35); opacity: 1; }
       .hero__est-label { color: rgba(255,255,255,0.6); opacity: 1; }
-      .hero__greeting { color: var(--yellow); margin-bottom: 24px; }
-      .hero__subtitle { color: rgba(255,255,255,0.78); opacity: 1; max-width: 100%; margin-bottom: 36px; }
+      .hero__greeting { color: var(--yellow); margin-bottom: 14px; }
+      .hero__subtitle { color: rgba(255,255,255,0.78); opacity: 1; max-width: 100%; margin-bottom: 28px; }
 
-      /* Button overrides for dark background */
-      .hero__buttons { justify-content: center; }
+      /* Pill buttons – full width, stacked vertically */
+      .hero__buttons {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        gap: 12px;
+      }
+      .hero__buttons .btn {
+        width: 100%;
+        justify-content: center;
+        border-radius: 60px;
+        padding: 16px 24px;
+      }
       .hero__buttons .btn-blue { background: var(--yellow); color: var(--blue); }
       .hero__buttons .btn-blue:hover { background: #ffc940; }
       .hero__buttons .btn-outline-blue {
         border-color: rgba(255,255,255,0.55);
         color: var(--white);
+        background: rgba(255,255,255,0.08);
       }
       .hero__buttons .btn-outline-blue:hover {
-        background: rgba(255,255,255,0.12);
+        background: rgba(255,255,255,0.18);
         border-color: rgba(255,255,255,0.8);
       }
 
@@ -1298,16 +1380,70 @@
       .footer__grid { grid-template-columns: 1fr; gap: 36px; }
       .footer__bottom { flex-direction: column; text-align: center; }
 
-      .mobile-menu { padding: 20px 24px 28px; }
     }
 
     @media (max-width: 480px) {
       .hero__circle-wrap { width: 85vw; }
       .ticker__item { padding: 0 24px; font-size: 11px; }
     }
+
+    /* ===========================
+       LADDNINGSSKÄRM
+    =========================== */
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: var(--blue);
+      z-index: 99999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      transition: opacity 0.55s ease, visibility 0.55s ease;
+    }
+    #loader.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .loader__logo {
+      width: min(260px, 62vw);
+      animation: loaderIn 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    .loader__bar-wrap {
+      width: min(220px, 52vw);
+      height: 2px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .loader__bar {
+      height: 100%;
+      width: 0;
+      background: var(--yellow);
+      border-radius: 2px;
+      animation: loaderBar 1.3s cubic-bezier(0.22, 1, 0.36, 1) 0.25s forwards;
+    }
+    @keyframes loaderIn {
+      from { opacity: 0; transform: scale(0.88); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    @keyframes loaderBar {
+      from { width: 0; }
+      to   { width: 100%; }
+    }
   </style>
 </head>
 <body>
+
+  <!-- Laddningsskärm -->
+  <div id="loader" aria-hidden="true">
+    <img src="Brand_guidlines/BERRABURRA_Logo-2_yellow.png" alt="Berra Burra" class="loader__logo">
+    <div class="loader__bar-wrap">
+      <div class="loader__bar"></div>
+    </div>
+  </div>
 
   <!-- ============================================================
        NAVIGERING
@@ -1336,16 +1472,30 @@
     </div>
   </nav>
 
-  <!-- Mobile menu -->
-  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-    <ul>
-      <li><a href="#om-oss">Om oss</a></li>
-      <li><a href="#meny">Meny</a></li>
-      <li><a href="#galleri">Galleri</a></li>
-      <li><a href="#restauranger">Restauranger</a></li>
-      <li><a href="#kontakt">Kontakt</a></li>
-    </ul>
-    <a href="#" class="btn btn-red">Beställ</a>
+  <!-- Mobile menu – fullscreen overlay -->
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="mobile-menu__header">
+      <img src="Brand_guidlines/BERRABURRA_Logo-1_yellow.png" alt="Berra Burra" class="mobile-menu__logo">
+      <button class="mobile-menu__close" id="menu-close" aria-label="Stäng meny">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="4" y1="4" x2="20" y2="20"/>
+          <line x1="20" y1="4" x2="4" y2="20"/>
+        </svg>
+      </button>
+    </div>
+    <nav class="mobile-menu__nav">
+      <ul>
+        <li><a href="#om-oss">Om oss</a></li>
+        <li><a href="#meny">Meny</a></li>
+        <li><a href="#galleri">Galleri</a></li>
+        <li><a href="#restauranger">Restauranger</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+    </nav>
+    <div class="mobile-menu__footer">
+      <a href="https://instagram.com/berraburra" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://facebook.com/berraburra" target="_blank" rel="noopener">Facebook</a>
+    </div>
   </div>
 
 
@@ -1889,22 +2039,37 @@
     // --- Hamburger / Mobile menu ---
     const btn     = document.getElementById('hamburger');
     const mobileM = document.getElementById('mobile-menu');
+    const closeBtn = document.getElementById('menu-close');
+
+    function openMenu() {
+      btn.classList.add('open');
+      mobileM.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+      mobileM.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      btn.classList.remove('open');
+      mobileM.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+      mobileM.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
 
     btn.addEventListener('click', () => {
-      const open = btn.classList.toggle('open');
-      mobileM.classList.toggle('open', open);
-      btn.setAttribute('aria-expanded', open);
-      mobileM.setAttribute('aria-hidden', !open);
+      mobileM.classList.contains('open') ? closeMenu() : openMenu();
     });
+    closeBtn.addEventListener('click', closeMenu);
 
     // Stäng vid länk-klick
     mobileM.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => {
-        btn.classList.remove('open');
-        mobileM.classList.remove('open');
-        btn.setAttribute('aria-expanded', 'false');
-        mobileM.setAttribute('aria-hidden', 'true');
-      });
+      a.addEventListener('click', closeMenu);
+    });
+
+    // --- Laddningsskärm ---
+    const loader = document.getElementById('loader');
+    window.addEventListener('load', () => {
+      setTimeout(() => loader.classList.add('hidden'), 1500);
     });
 
     // --- Scroll reveal ---
