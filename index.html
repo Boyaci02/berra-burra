@@ -1,0 +1,1984 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Berra Burra – Kebab sedan 1997</title>
+  <link rel="icon" type="image/png" href="Brand_guidlines/BERRABURRA_Monogram_blue.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===========================
+       FONTS – FLAMA
+    =========================== */
+    @font-face {
+      font-family: 'Flama';
+      src: url('Brand_guidlines/Flama-Book.otf') format('opentype');
+      font-weight: 300;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Flama';
+      src: url('Brand_guidlines/Flama-Basic.otf') format('opentype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Flama';
+      src: url('Brand_guidlines/Flama-Medium.otf') format('opentype');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Flama';
+      src: url('Brand_guidlines/Flama-Semibold.otf') format('opentype');
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Flama';
+      src: url('Brand_guidlines/Flama-Bold.otf') format('opentype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Flama';
+      src: url('Brand_guidlines/Flama-Black.otf') format('opentype');
+      font-weight: 900;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FlamaCondensed';
+      src: url('Brand_guidlines/FlamaCondensed-Bold.otf') format('opentype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FlamaCondensed';
+      src: url('Brand_guidlines/FlamaCondensed-Medium.otf') format('opentype');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    /* ===========================
+       VARIABLER / BRAND-FÄRGER
+    =========================== */
+    :root {
+      --blue:   #00236C;
+      --yellow: #FFD680;
+      --cream:  #FFF5CC;
+      --red:    #F9423A;
+      --white:  #FFFFFF;
+      --black:  #000000;
+      --sans:   'Flama', 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --cond:   'FlamaCondensed', 'Inter Condensed', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --script: 'Pacifico', cursive;
+    }
+
+    /* ===========================
+       RESET & BAS
+    =========================== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--sans);
+      background: var(--cream);
+      color: var(--blue);
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    /* ===========================
+       TYPOGRAFI-HJÄLPARE
+    =========================== */
+    .label {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      opacity: 0.5;
+    }
+    .heading {
+      font-family: var(--cond), var(--sans);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      line-height: 1.05;
+    }
+    .script-text {
+      font-family: var(--script);
+      font-weight: 400;
+    }
+
+    /* ===========================
+       KNAPPAR
+    =========================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 36px;
+      font-family: var(--cond), var(--sans);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: all 0.22s ease;
+      white-space: nowrap;
+    }
+    .btn-blue   { background: var(--blue);   color: var(--yellow); }
+    .btn-blue:hover { background: #001a52; }
+    .btn-yellow { background: var(--yellow); color: var(--blue);   }
+    .btn-yellow:hover { background: #ffc940; }
+    .btn-red    { background: var(--red);    color: var(--white);  }
+    .btn-red:hover { background: #d93530; }
+    .btn-outline-yellow {
+      background: transparent;
+      color: var(--yellow);
+      border: 2px solid var(--yellow);
+    }
+    .btn-outline-yellow:hover {
+      background: var(--yellow);
+      color: var(--blue);
+    }
+    .btn-outline-blue {
+      background: transparent;
+      color: var(--blue);
+      border: 2px solid var(--blue);
+    }
+    .btn-outline-blue:hover {
+      background: var(--blue);
+      color: var(--yellow);
+    }
+
+    /* ===========================
+       NAVIGERING
+    =========================== */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: var(--cream);
+      border-bottom: 1px solid rgba(0,35,108,0.10);
+      transition: background 0.38s ease, border-color 0.38s ease, box-shadow 0.3s;
+    }
+    .nav.scrolled { box-shadow: 0 2px 24px rgba(0,35,108,0.12); }
+    .nav__inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 32px;
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+
+    /* Logo – stacked swap (blue default, yellow on transparent mobile nav) */
+    .nav__logo-link { position: relative; display: inline-block; line-height: 0; }
+    .nav__logo { height: 38px; width: auto; display: block; transition: opacity 0.38s ease; }
+    .nav__logo--yellow { position: absolute; top: 0; left: 0; opacity: 0; pointer-events: none; }
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav__links a {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue);
+      transition: opacity 0.2s;
+    }
+    .nav__links a:hover { opacity: 0.5; }
+    .nav__actions { display: flex; align-items: center; gap: 12px; }
+    .nav__cta {
+      background: var(--red);
+      color: var(--white);
+      padding: 10px 22px;
+      font-family: var(--cond), var(--sans);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: background 0.2s;
+    }
+    .nav__cta:hover { background: var(--blue); }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 6px;
+      width: 36px;
+      height: 36px;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: var(--blue);
+      transition: transform 0.3s, opacity 0.3s;
+      transform-origin: center;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    /* Mobile menu */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 76px; left: 0; right: 0;
+      background: var(--cream);
+      border-bottom: 2px solid var(--blue);
+      z-index: 999;
+      padding: 24px 32px 32px;
+    }
+    .mobile-menu.open { display: block; }
+    .mobile-menu ul { list-style: none; }
+    .mobile-menu ul li { border-bottom: 1px solid rgba(0,35,108,0.08); }
+    .mobile-menu ul li a {
+      display: block;
+      padding: 16px 0;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .mobile-menu .btn { width: 100%; margin-top: 20px; justify-content: center; }
+
+    /* ===========================
+       HERO
+    =========================== */
+    .hero {
+      min-height: 100svh;
+      background: var(--cream);
+      padding-top: 76px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Subtle BB pattern overlay */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url('Brand_guidlines/BERRABURRA_Monogram_blue.png');
+      background-size: 80px 80px;
+      background-repeat: repeat;
+      opacity: 0.025;
+      pointer-events: none;
+    }
+
+    .hero__main {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 60px 64px;
+      gap: 48px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Left text column */
+    .hero__text { }
+    .hero__est {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+    .hero__est-line {
+      width: 32px;
+      height: 2px;
+      background: var(--blue);
+      opacity: 0.4;
+    }
+    .hero__est-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      opacity: 0.5;
+    }
+    .hero__greeting {
+      font-family: var(--script);
+      font-size: clamp(52px, 6.5vw, 100px);
+      color: var(--blue);
+      line-height: 1.05;
+      margin-bottom: 32px;
+    }
+    .hero__subtitle {
+      font-size: clamp(15px, 1.4vw, 18px);
+      font-weight: 300;
+      line-height: 1.7;
+      opacity: 0.7;
+      max-width: 440px;
+      margin-bottom: 40px;
+    }
+    .hero__buttons { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    /* Right visual */
+    .hero__visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    .hero__circle-wrap {
+      position: relative;
+      width: clamp(280px, 38vw, 540px);
+      aspect-ratio: 1;
+    }
+    .hero__circle {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: var(--yellow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .hero__circle-logo {
+      width: 60%;
+      object-fit: contain;
+    }
+    .hero__ikoner {
+      position: absolute;
+      bottom: -4%;
+      left: -8%;
+      right: -8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      pointer-events: none;
+    }
+    .hero__ikon {
+      width: 36%;
+      max-width: 180px;
+      filter: drop-shadow(0 8px 24px rgba(0,35,108,0.15));
+    }
+    .hero__badge {
+      position: absolute;
+      top: 8%;
+      right: -5%;
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: var(--red);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      text-align: center;
+      z-index: 2;
+      animation: badge-spin 8s linear infinite;
+    }
+    .hero__badge-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .hero__badge-price {
+      font-family: var(--cond), var(--sans);
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1;
+    }
+    @keyframes badge-spin {
+      0%   { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* ===========================
+       TICKER / LÖPANDE TEXT
+    =========================== */
+    .ticker {
+      background: var(--blue);
+      color: var(--yellow);
+      padding: 16px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .ticker__track {
+      display: inline-flex;
+      animation: ticker-scroll 30s linear infinite;
+    }
+    .ticker__item {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--cond), var(--sans);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0 40px;
+    }
+    .ticker__dot { color: var(--red); font-size: 18px; line-height: 1; }
+    @keyframes ticker-scroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ===========================
+       FEATURED / SPECIALERBJUDANDE
+    =========================== */
+    .featured {
+      background: var(--blue);
+      padding: 120px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .featured__pattern {
+      position: absolute;
+      inset: 0;
+      background-image: url('Brand_guidlines/BERRABURRA_Monogram_yellow.png');
+      background-size: 160px 160px;
+      background-repeat: repeat;
+      opacity: 0.04;
+      pointer-events: none;
+    }
+    .featured__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 64px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .featured__label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 16px;
+    }
+    .featured__title {
+      font-family: var(--cond), var(--sans);
+      font-size: clamp(56px, 7vw, 104px);
+      font-weight: 700;
+      color: var(--yellow);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      line-height: 1;
+      margin-bottom: 28px;
+    }
+    .featured__price {
+      display: inline-block;
+      background: var(--red);
+      color: var(--white);
+      font-family: var(--cond), var(--sans);
+      font-size: 28px;
+      font-weight: 700;
+      padding: 6px 20px;
+      margin-bottom: 28px;
+    }
+    .featured__desc {
+      font-size: 16px;
+      line-height: 1.75;
+      color: rgba(255,214,128,0.65);
+      margin-bottom: 40px;
+    }
+    .featured__characters {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 0;
+    }
+    .featured__char {
+      width: 48%;
+      max-width: 220px;
+      filter: drop-shadow(0 12px 40px rgba(0,0,0,0.3));
+    }
+
+    /* ===========================
+       OM OSS
+    =========================== */
+    .about {
+      padding: 130px 0;
+      background: var(--cream);
+    }
+    .about__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 64px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: center;
+    }
+    .about__label { margin-bottom: 16px; }
+    .about__year {
+      display: inline-block;
+      font-family: var(--cond), var(--sans);
+      font-size: 80px;
+      font-weight: 700;
+      color: var(--yellow);
+      background: var(--blue);
+      padding: 4px 24px 8px;
+      margin-bottom: 24px;
+      letter-spacing: 0.04em;
+    }
+    .about__title {
+      font-size: clamp(36px, 4vw, 60px);
+      margin-bottom: 28px;
+    }
+    .about__text {
+      font-size: 16px;
+      line-height: 1.8;
+      opacity: 0.75;
+      margin-bottom: 20px;
+    }
+    .about__text:last-of-type { margin-bottom: 40px; }
+    .about__characters {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 24px;
+    }
+    .about__char {
+      width: 42%;
+      max-width: 200px;
+    }
+    .about__char-label {
+      text-align: center;
+      margin-top: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.5;
+    }
+
+    /* ===========================
+       MENY
+    =========================== */
+    .menu {
+      background: var(--yellow);
+      padding: 120px 0;
+    }
+    .menu__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 64px;
+    }
+    .menu__header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 60px;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .menu__title-wrap { }
+    .menu__script {
+      font-family: var(--script);
+      font-size: clamp(52px, 7vw, 88px);
+      color: var(--blue);
+      line-height: 1;
+    }
+    .menu__subtitle {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--blue);
+      opacity: 0.5;
+      margin-top: 4px;
+    }
+    .menu__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3px;
+      margin-bottom: 48px;
+    }
+    .menu__card {
+      background: var(--blue);
+      padding: 52px 48px;
+    }
+    .menu__card:nth-child(2n) { background: rgba(0,27,82,0.88); }
+    .menu__card-title {
+      font-family: var(--cond), var(--sans);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--yellow);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+    .menu__card-desc {
+      font-size: 13px;
+      color: rgba(255,214,128,0.55);
+      line-height: 1.6;
+      margin-bottom: 36px;
+    }
+    .menu__items { list-style: none; }
+    .menu__item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 13px 0;
+      border-bottom: 1px solid rgba(255,214,128,0.12);
+      gap: 16px;
+    }
+    .menu__item:first-child { border-top: 1px solid rgba(255,214,128,0.12); }
+    .menu__item-name { font-size: 14px; color: rgba(255,214,128,0.85); }
+    .menu__item-name strong { font-weight: 600; color: var(--yellow); }
+    .menu__item-price {
+      font-family: var(--cond), var(--sans);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--yellow);
+      white-space: nowrap;
+    }
+    .menu__monogram {
+      position: relative;
+      grid-column: span 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+      padding: 52px 48px;
+      background: rgba(0,35,108,0.06);
+    }
+    .menu__monogram-img { height: 80px; width: auto; opacity: 0.5; }
+    .menu__monogram-text {
+      font-family: var(--script);
+      font-size: 32px;
+      color: var(--blue);
+      opacity: 0.4;
+    }
+    .menu__cta { text-align: center; }
+
+    /* ===========================
+       RESTAURANGER
+    =========================== */
+    .locations {
+      padding: 120px 0;
+      background: var(--cream);
+    }
+    .locations__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 64px;
+    }
+    .locations__header { margin-bottom: 64px; }
+    .locations__title { font-size: clamp(40px, 5vw, 72px); margin-top: 12px; }
+    .locations__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    .location-card {
+      background: var(--blue);
+      padding: 52px 44px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .location-card::after {
+      content: '';
+      position: absolute;
+      bottom: -30px;
+      right: -30px;
+      width: 130px;
+      height: 130px;
+      background-image: url('Brand_guidlines/BERRABURRA_Monogram_yellow.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      opacity: 0.07;
+      pointer-events: none;
+    }
+    .location-card__tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 16px;
+    }
+    .location-card__city {
+      font-family: var(--cond), var(--sans);
+      font-size: 40px;
+      font-weight: 700;
+      color: var(--yellow);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 20px;
+    }
+    .location-card__address {
+      font-size: 14px;
+      color: rgba(255,214,128,0.65);
+      line-height: 1.8;
+      margin-bottom: 32px;
+      flex: 1;
+    }
+    .location-card__divider {
+      width: 32px;
+      height: 2px;
+      background: rgba(255,214,128,0.2);
+      margin-bottom: 24px;
+    }
+    .location-card__hours-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,214,128,0.4);
+      margin-bottom: 12px;
+    }
+    .location-card__hour-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: rgba(255,214,128,0.65);
+      margin-bottom: 6px;
+    }
+    .location-card__hour-row span:last-child { font-weight: 600; color: rgba(255,214,128,0.85); }
+
+    /* ===========================
+       KONTAKT
+    =========================== */
+    .contact {
+      background: var(--blue);
+      padding: 120px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url('Brand_guidlines/BERRABURRA_Monogram_yellow.png');
+      background-size: 200px;
+      background-repeat: repeat;
+      opacity: 0.03;
+      pointer-events: none;
+    }
+    .contact__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 64px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: start;
+      position: relative;
+      z-index: 1;
+    }
+    .contact__label { color: rgba(255,214,128,0.5); margin-bottom: 16px; }
+    .contact__title {
+      font-size: clamp(40px, 5vw, 72px);
+      color: var(--yellow);
+      margin-bottom: 48px;
+    }
+    .contact__info-item {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      margin-bottom: 36px;
+    }
+    .contact__info-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255,214,128,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .contact__info-detail-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,214,128,0.4);
+      margin-bottom: 6px;
+    }
+    .contact__info-detail-value {
+      font-size: 16px;
+      color: var(--yellow);
+    }
+    .contact__info-detail-value a { transition: opacity 0.2s; }
+    .contact__info-detail-value a:hover { opacity: 0.7; }
+
+    /* Kontaktformulär */
+    .contact__form {
+      background: rgba(255,214,128,0.05);
+      border: 1px solid rgba(255,214,128,0.12);
+      padding: 48px;
+    }
+    .contact__form-title {
+      font-family: var(--cond), var(--sans);
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--yellow);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 32px;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { margin-bottom: 18px; }
+    .form-group label {
+      display: block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,214,128,0.45);
+      margin-bottom: 8px;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      background: rgba(255,214,128,0.06);
+      border: 1px solid rgba(255,214,128,0.18);
+      color: var(--yellow);
+      padding: 14px 16px;
+      font-family: var(--sans);
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: rgba(255,214,128,0.25); }
+    .form-group input:focus,
+    .form-group textarea:focus { border-color: rgba(255,214,128,0.5); }
+    .form-group textarea { height: 130px; resize: none; }
+    .form-submit { width: 100%; margin-top: 8px; }
+
+    /* ===========================
+       FOOTER
+    =========================== */
+    .footer {
+      background: var(--blue);
+      border-top: 1px solid rgba(255,214,128,0.12);
+      padding: 72px 0 40px;
+    }
+    .footer__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 64px;
+    }
+    .footer__grid {
+      display: grid;
+      grid-template-columns: 220px 1fr 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 64px;
+    }
+    .footer__logo { height: 64px; width: auto; margin-bottom: 20px; }
+    .footer__brand-tagline {
+      font-size: 12px;
+      color: rgba(255,214,128,0.35);
+      line-height: 1.6;
+    }
+    .footer__col-title {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,214,128,0.4);
+      margin-bottom: 20px;
+    }
+    .footer__col ul { list-style: none; }
+    .footer__col ul li { margin-bottom: 10px; }
+    .footer__col ul li a {
+      font-size: 14px;
+      color: rgba(255,214,128,0.65);
+      transition: color 0.2s;
+    }
+    .footer__col ul li a:hover { color: var(--yellow); }
+    .footer__bottom {
+      border-top: 1px solid rgba(255,214,128,0.1);
+      padding-top: 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer__copy { font-size: 12px; color: rgba(255,214,128,0.3); }
+    .footer__socials { display: flex; gap: 20px; }
+    .footer__socials a {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,214,128,0.4);
+      transition: color 0.2s;
+    }
+    .footer__socials a:hover { color: var(--yellow); }
+
+    /* ===========================
+       SCROLL REVEAL ANIMERING
+    =========================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    /* ===========================
+       HERO – MATBILD KORT
+    =========================== */
+    .hero__food-card {
+      position: absolute;
+      bottom: 18%;
+      right: -14%;
+      width: 36%;
+      max-width: 185px;
+      aspect-ratio: 4/5;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 14px 48px rgba(0,35,108,0.24);
+      border: 4px solid var(--white);
+      z-index: 5;
+      transform: rotate(4deg);
+    }
+    .hero__food-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ===========================
+       FEATURED – MATBILD
+    =========================== */
+    .featured__right {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    .featured__dish-frame {
+      width: 100%;
+      max-width: 420px;
+      aspect-ratio: 4/3;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.45);
+      border: 2px solid rgba(255,214,128,0.15);
+    }
+    .featured__dish-frame img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .featured__chars-small {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+    }
+    .featured__chars-small .featured__char { width: 34%; max-width: 150px; }
+
+    /* ===========================
+       MENY – KORTBILD
+    =========================== */
+    .menu__card-img {
+      margin: -52px -48px 32px;
+      height: 200px;
+      overflow: hidden;
+    }
+    .menu__card-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .menu__card:hover .menu__card-img img { transform: scale(1.06); }
+
+    /* ===========================
+       GALLERI
+    =========================== */
+    .gallery {
+      padding: 120px 0;
+      background: var(--blue);
+      overflow: hidden;
+    }
+    .gallery__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 64px;
+    }
+    .gallery__header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 56px;
+      gap: 24px;
+    }
+    .gallery__label { color: rgba(255,214,128,0.45); }
+    .gallery__title {
+      font-size: clamp(40px, 5vw, 72px);
+      color: var(--yellow);
+      margin-top: 12px;
+    }
+    .gallery__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 240px;
+      gap: 8px;
+    }
+    .gallery__item {
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+      display: block;
+    }
+    .gallery__item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+    .gallery__item:nth-child(6) { grid-column: span 2; }
+    .gallery__item:nth-child(7) { grid-column: span 2; }
+    .gallery__item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .gallery__item:hover img { transform: scale(1.05); }
+    .gallery__item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,35,108,0);
+      transition: background 0.3s;
+      pointer-events: none;
+    }
+    .gallery__item:hover::after { background: rgba(0,35,108,0.3); }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0,0,0,0.93);
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox__img {
+      max-width: 92vw;
+      max-height: 88vh;
+      object-fit: contain;
+      border-radius: 4px;
+      display: block;
+    }
+    .lightbox__close {
+      position: absolute;
+      top: 20px; right: 24px;
+      background: none; border: none;
+      color: rgba(255,255,255,0.7);
+      font-size: 36px;
+      cursor: pointer;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+    .lightbox__close:hover { color: #fff; }
+    .lightbox__prev, .lightbox__next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.1);
+      border: none;
+      color: var(--white);
+      font-size: 22px;
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .lightbox__prev { left: 16px; }
+    .lightbox__next { right: 16px; }
+    .lightbox__prev:hover, .lightbox__next:hover { background: rgba(255,255,255,0.25); }
+
+    /* ===========================
+       LOCATIONS – UPPDATERAT
+    =========================== */
+    .location-link {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+    }
+    .location-card-img {
+      margin: -52px -44px 32px;
+      height: 220px;
+      overflow: hidden;
+    }
+    .location-card-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .location-link:hover .location-card-img img { transform: scale(1.06); }
+    .location-card__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 24px;
+      font-family: var(--cond), var(--sans);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      transition: gap 0.2s;
+    }
+    .location-link:hover .location-card__cta { gap: 14px; }
+
+    /* ===========================
+       RESPONSIVT
+    =========================== */
+    @media (max-width: 1100px) {
+      .hero__main   { padding: 48px 40px; }
+      .featured__inner,
+      .about__inner,
+      .contact__inner { padding: 0 40px; }
+      .menu__inner,
+      .locations__inner,
+      .gallery__inner,
+      .footer__inner { padding: 0 40px; }
+      .footer__grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      /* ── Transparent nav ── */
+      .nav {
+        background: transparent;
+        border-bottom-color: transparent;
+      }
+      .nav.scrolled {
+        background: var(--cream);
+        border-bottom-color: rgba(0,35,108,0.10);
+      }
+      /* Show yellow logo on transparent nav, fade to blue on scroll */
+      .nav:not(.scrolled) .nav__logo--blue  { opacity: 0; }
+      .nav:not(.scrolled) .nav__logo--yellow { opacity: 1; }
+
+      /* Show order button in nav on mobile, hide text links */
+      .nav__links { display: none; }
+      .nav__cta   { display: block; }
+      /* White CTA text when nav is transparent */
+      .nav:not(.scrolled) .nav__cta { background: rgba(249,66,58,0.88); }
+
+      /* Hamburger bars: white when transparent, blue when scrolled */
+      .nav:not(.scrolled) .hamburger span { background: var(--white); }
+
+      .hamburger { display: flex; }
+
+      /* ── Full-screen hero ── */
+      .hero {
+        background-image: url('Brand_guidlines/Bilder_på_mat/DSC01922-Enhanced-NR.jpg');
+        background-size: cover;
+        background-position: center;
+        background-color: var(--blue);
+      }
+      /* Override monogram pattern with dark gradient overlay */
+      .hero::before {
+        background-image: linear-gradient(
+          to bottom,
+          rgba(0,35,108,0.50) 0%,
+          rgba(0,35,108,0.82) 100%
+        );
+        background-size: 100%;
+        background-repeat: no-repeat;
+        opacity: 1;
+      }
+      /* Center text vertically over the full-screen image */
+      .hero__main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100svh;
+        padding: 100px 32px 80px;
+        text-align: center;
+        gap: 0;
+      }
+      /* Hide the circle/visual on mobile */
+      .hero__visual { display: none; }
+
+      /* Text colors for dark background */
+      .hero__est { justify-content: center; margin-bottom: 20px; }
+      .hero__est-line { background: rgba(255,255,255,0.35); opacity: 1; }
+      .hero__est-label { color: rgba(255,255,255,0.6); opacity: 1; }
+      .hero__greeting { color: var(--yellow); margin-bottom: 24px; }
+      .hero__subtitle { color: rgba(255,255,255,0.78); opacity: 1; max-width: 100%; margin-bottom: 36px; }
+
+      /* Button overrides for dark background */
+      .hero__buttons { justify-content: center; }
+      .hero__buttons .btn-blue { background: var(--yellow); color: var(--blue); }
+      .hero__buttons .btn-blue:hover { background: #ffc940; }
+      .hero__buttons .btn-outline-blue {
+        border-color: rgba(255,255,255,0.55);
+        color: var(--white);
+      }
+      .hero__buttons .btn-outline-blue:hover {
+        background: rgba(255,255,255,0.12);
+        border-color: rgba(255,255,255,0.8);
+      }
+
+      .featured__inner { grid-template-columns: 1fr; gap: 48px; text-align: center; padding: 0 24px; }
+      .featured { padding: 80px 0; }
+
+      .about__inner { grid-template-columns: 1fr; gap: 48px; padding: 0 24px; }
+      .about { padding: 80px 0; }
+
+      .menu__inner { padding: 0 24px; }
+      .menu { padding: 80px 0; }
+      .menu__grid { grid-template-columns: 1fr; }
+      .menu__monogram { grid-column: span 1; }
+      .menu__header { flex-direction: column; align-items: flex-start; gap: 8px; }
+
+      .locations__inner { padding: 0 24px; }
+      .locations { padding: 80px 0; }
+      .locations__grid { grid-template-columns: 1fr; }
+      .location-card-img { height: 180px; }
+
+      .gallery__inner { padding: 0 24px; }
+      .gallery { padding: 80px 0; }
+      .gallery__grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 180px; }
+      .gallery__item:nth-child(6), .gallery__item:nth-child(7) { grid-column: span 1; }
+      .gallery__header { flex-direction: column; align-items: flex-start; gap: 8px; }
+
+      .contact__inner { grid-template-columns: 1fr; gap: 48px; padding: 0 24px; }
+      .contact { padding: 80px 0; }
+      .contact__form { padding: 32px 24px; }
+      .form-row { grid-template-columns: 1fr; }
+
+      .footer__inner { padding: 0 24px; }
+      .footer { padding: 60px 0 40px; }
+      .footer__grid { grid-template-columns: 1fr; gap: 36px; }
+      .footer__bottom { flex-direction: column; text-align: center; }
+
+      .mobile-menu { padding: 20px 24px 28px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero__circle-wrap { width: 85vw; }
+      .ticker__item { padding: 0 24px; font-size: 11px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVIGERING
+  ============================================================ -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="#hem" aria-label="Berra Burra startsida" class="nav__logo-link">
+        <img src="Brand_guidlines/BERRABURRA_Logo-1_blue.png" alt="Berra Burra" class="nav__logo nav__logo--blue">
+        <img src="Brand_guidlines/BERRABURRA_Logo-1_yellow.png" alt="" aria-hidden="true" class="nav__logo nav__logo--yellow">
+      </a>
+      <ul class="nav__links">
+        <li><a href="#om-oss">Om oss</a></li>
+        <li><a href="#meny">Meny</a></li>
+        <li><a href="#galleri">Galleri</a></li>
+        <li><a href="#restauranger">Restauranger</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+      <div class="nav__actions">
+        <a href="#" class="nav__cta">Beställ online</a>
+        <button class="hamburger" id="hamburger" aria-label="Öppna meny" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <ul>
+      <li><a href="#om-oss">Om oss</a></li>
+      <li><a href="#meny">Meny</a></li>
+      <li><a href="#galleri">Galleri</a></li>
+      <li><a href="#restauranger">Restauranger</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <a href="#" class="btn btn-red">Beställ</a>
+  </div>
+
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section class="hero" id="hem">
+    <div class="hero__main">
+      <!-- Vänster: Text -->
+      <div class="hero__text">
+        <div class="hero__est">
+          <span class="hero__est-line"></span>
+          <span class="hero__est-label label">Kebab sedan 1997 · Nora</span>
+        </div>
+        <div class="hero__greeting">
+          Hej!<br>Hej!<br>Tjena!<br>Tjena!
+        </div>
+        <p class="hero__subtitle">
+          Välkommen till Berra Burra – kebabrestaurangen med hjärta, hantverk och ett vänligt bemötande sedan 1997. Riktigt god mat, lagad med stolthet.
+        </p>
+        <div class="hero__buttons">
+          <a href="#meny" class="btn btn-blue">Se menyn</a>
+          <a href="#" class="btn btn-outline-blue">Beställ online</a>
+        </div>
+      </div>
+
+      <!-- Höger: Visuell -->
+      <div class="hero__visual">
+        <div class="hero__circle-wrap">
+          <div class="hero__circle">
+            <img
+              src="Brand_guidlines/BERRABURRA_Logo-2_blue.png"
+              alt="Berra Burra logotyp"
+              class="hero__circle-logo"
+            >
+          </div>
+          <!-- Flytande matbild -->
+          <div class="hero__food-card">
+            <img src="Brand_guidlines/Bilder_på_mat/DSC01922-Enhanced-NR.jpg" alt="Berra Burra specialrätt" loading="lazy">
+          </div>
+          <!-- Karaktärer i nederkant av cirkeln -->
+          <div class="hero__ikoner">
+            <img src="Brand_guidlines/BERRABURRA_Ikon_1.png" alt="Berra" class="hero__ikon">
+            <img src="Brand_guidlines/BERRABURRA_Ikon_2.png" alt="Burra" class="hero__ikon">
+          </div>
+          <!-- Pris-badge -->
+          <div class="hero__badge" aria-label="Special 145 kronor">
+            <span class="hero__badge-label">Special!</span>
+            <span class="hero__badge-price">145:-</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       TICKER
+  ============================================================ -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__track">
+      <!-- Original -->
+      <span class="ticker__item">Kebab med kärlek</span>
+      <span class="ticker__item ticker__dot">✦</span>
+      <span class="ticker__item">Est. 1997, Nora</span>
+      <span class="ticker__item ticker__dot">✦</span>
+      <span class="ticker__item">Lyxpita · Lyxrulle · Kebab Tallrik</span>
+      <span class="ticker__item ticker__dot">✦</span>
+      <span class="ticker__item">Gyros &amp; Kyckling</span>
+      <span class="ticker__item ticker__dot">✦</span>
+      <span class="ticker__item">Order Online</span>
+      <span class="ticker__item ticker__dot">✦</span>
+      <span class="ticker__item">Takeaway &amp; Delivery</span>
+      <span class="ticker__item ticker__dot">✦</span>
+      <!-- Kopia för sömlös loop -->
+      <span class="ticker__item">Kebab med kärlek</span>
+      <span class="ticker__item ticker__dot">✦</span>
+      <span class="ticker__item">Est. 1997, Nora</span>
+      <span class="ticker__item ticker__dot">✦</span>
+      <span class="ticker__item">Lyxpita · Lyxrulle · Kebab Tallrik</span>
+      <span class="ticker__item ticker__dot">✦</span>
+      <span class="ticker__item">Gyros &amp; Kyckling</span>
+      <span class="ticker__item ticker__dot">✦</span>
+      <span class="ticker__item">Order Online</span>
+      <span class="ticker__item ticker__dot">✦</span>
+      <span class="ticker__item">Takeaway &amp; Delivery</span>
+      <span class="ticker__item ticker__dot">✦</span>
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+       FEATURED / SPECIALERBJUDANDE
+  ============================================================ -->
+  <section class="featured">
+    <div class="featured__pattern"></div>
+    <div class="featured__inner">
+      <div class="reveal">
+        <p class="featured__label">Veckans special</p>
+        <h2 class="featured__title">Lyxpita</h2>
+        <div class="featured__price">145 kr</div>
+        <p class="featured__desc">
+          Kalvkött med syrad gurka, lök- och persiljesallad och valfri sås. Toppas med gräslök och rostad lök. Serveras med pommes frites, ris eller sötpotatis. Välkomna!
+        </p>
+        <a href="#meny" class="btn btn-yellow">Hela menyn</a>
+      </div>
+      <div class="featured__right reveal reveal-delay-2">
+        <div class="featured__dish-frame">
+          <img src="Brand_guidlines/Bilder_på_mat/DSC01868-Enhanced-NR.jpg" alt="Lyxpita från Berra Burra" loading="lazy">
+        </div>
+        <div class="featured__chars-small featured__characters">
+          <img src="Brand_guidlines/BERRABURRA_Ikon_3.png" alt="Berra karaktär" class="featured__char">
+          <img src="Brand_guidlines/BERRABURRA_Ikon_4.png" alt="Burra karaktär" class="featured__char">
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       OM OSS
+  ============================================================ -->
+  <section class="about" id="om-oss">
+    <div class="about__inner">
+      <div>
+        <p class="about__label label reveal">Om oss</p>
+        <div class="about__year reveal">1997</div>
+        <h2 class="about__title heading reveal">Kebab med<br>hjärta &amp;<br>hantverk</h2>
+        <p class="about__text reveal">
+          Sedan starten i Nora 1997 har råvarorna, kärleken till hantverket och stoltheten att stå i centrum drivit oss framåt. Berra Burra är idag två restauranger med samma ambition som alltid – riktigt god kebab, lagad med stolthet och värme.
+        </p>
+        <p class="about__text reveal">
+          Berra är den glada och utåtriktade – alltid först med ett vänligt <em>"Heej heej, tjeena tjeena!"</em>. Burra är butter, kompromisslös i sitt hantverk och fullständigt fokuserad på kebaben och såserna. Tillsammans är de Berra Burra.
+        </p>
+        <a href="#kontakt" class="btn btn-blue reveal">Kontakta oss</a>
+      </div>
+      <div class="about__characters reveal">
+        <div>
+          <img src="Brand_guidlines/BERRABURRA_Ikon_1.png" alt="Berra" class="about__char">
+          <p class="about__char-label">Berra</p>
+        </div>
+        <div>
+          <img src="Brand_guidlines/BERRABURRA_Ikon_2.png" alt="Burra" class="about__char">
+          <p class="about__char-label">Burra</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       MENY
+  ============================================================ -->
+  <section class="menu" id="meny">
+    <div class="menu__inner">
+      <div class="menu__header">
+        <div class="menu__title-wrap reveal">
+          <div class="menu__script">Meny</div>
+          <p class="menu__subtitle">Beställ i restaurangen eller online</p>
+        </div>
+        <a href="#" class="btn btn-blue reveal">Beställ online</a>
+      </div>
+
+      <div class="menu__grid">
+        <!-- Klassisk Pita -->
+        <div class="menu__card reveal">
+          <div class="menu__card-img">
+            <img src="Brand_guidlines/Bilder_på_mat/DSC01884-Enhanced-NR.jpg" alt="Klassisk Pita" loading="lazy">
+          </div>
+          <h3 class="menu__card-title">Klassisk Pita</h3>
+          <p class="menu__card-desc">Isbergssallad, tomat, rödlök, valfri sås, toppas med gräslök och rostad lök</p>
+          <ul class="menu__items">
+            <li class="menu__item">
+              <span class="menu__item-name"><strong>Kebab</strong> (kalv)</span>
+              <span class="menu__item-price">145:-</span>
+            </li>
+            <li class="menu__item">
+              <span class="menu__item-name"><strong>Gyros</strong> (fläsk)</span>
+              <span class="menu__item-price">145:-</span>
+            </li>
+            <li class="menu__item">
+              <span class="menu__item-name"><strong>Kyckling</strong></span>
+              <span class="menu__item-price">145:-</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Lyxrulle -->
+        <div class="menu__card reveal reveal-delay-1">
+          <div class="menu__card-img">
+            <img src="Brand_guidlines/Bilder_på_mat/DSC01841-Enhanced-NR.jpg" alt="Lyxrulle" loading="lazy">
+          </div>
+          <h3 class="menu__card-title">Lyxrulle</h3>
+          <p class="menu__card-desc">Lök och persiljesallad, syrad rödkål, syrad gurka, valfri sås</p>
+          <ul class="menu__items">
+            <li class="menu__item">
+              <span class="menu__item-name"><strong>Kebab</strong> (kalv)</span>
+              <span class="menu__item-price">149:-</span>
+            </li>
+            <li class="menu__item">
+              <span class="menu__item-name"><strong>Gyros</strong> (fläsk)</span>
+              <span class="menu__item-price">149:-</span>
+            </li>
+            <li class="menu__item">
+              <span class="menu__item-name"><strong>Kyckling</strong></span>
+              <span class="menu__item-price">149:-</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Kebab Tallrik -->
+        <div class="menu__card reveal reveal-delay-2">
+          <div class="menu__card-img">
+            <img src="Brand_guidlines/Bilder_på_mat/DSC01901-Enhanced-NR.jpg" alt="Kebab Tallrik" loading="lazy">
+          </div>
+          <h3 class="menu__card-title">Kebab Tallrik</h3>
+          <p class="menu__card-desc">Serveras med sallad, tomat, rödlök och valfri sås. Välj tillbehör</p>
+          <ul class="menu__items">
+            <li class="menu__item">
+              <span class="menu__item-name"><strong>Kebab</strong> (kalv)</span>
+              <span class="menu__item-price">145:-</span>
+            </li>
+            <li class="menu__item">
+              <span class="menu__item-name"><strong>Gyros</strong> (fläsk)</span>
+              <span class="menu__item-price">145:-</span>
+            </li>
+            <li class="menu__item">
+              <span class="menu__item-name"><strong>Kyckling</strong></span>
+              <span class="menu__item-price">145:-</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Dryck & Tillbehör -->
+        <div class="menu__card reveal reveal-delay-3">
+          <div class="menu__card-img">
+            <img src="Brand_guidlines/Bilder_på_mat/DSC01873-Enhanced-NR.jpg" alt="Tillbehör" loading="lazy">
+          </div>
+          <h3 class="menu__card-title">Dryck &amp; Tillbehör</h3>
+          <p class="menu__card-desc">Komplettera din måltid med tillbehör och dryck från vår meny</p>
+          <ul class="menu__items">
+            <li class="menu__item">
+              <span class="menu__item-name">Pommes frites</span>
+              <span class="menu__item-price">39:-</span>
+            </li>
+            <li class="menu__item">
+              <span class="menu__item-name">Sötpotatis frites</span>
+              <span class="menu__item-price">45:-</span>
+            </li>
+            <li class="menu__item">
+              <span class="menu__item-name">Läsk (33 cl)</span>
+              <span class="menu__item-price">29:-</span>
+            </li>
+            <li class="menu__item">
+              <span class="menu__item-name">Vatten</span>
+              <span class="menu__item-price">19:-</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Mönster-separator -->
+        <div class="menu__monogram" aria-hidden="true">
+          <img src="Brand_guidlines/BERRABURRA_Monogram_blue.png" alt="" class="menu__monogram-img">
+          <span class="menu__monogram-text">Berra Burra</span>
+          <img src="Brand_guidlines/BERRABURRA_Monogram_blue.png" alt="" class="menu__monogram-img">
+        </div>
+      </div>
+
+      <div class="menu__cta reveal">
+        <a href="#" class="btn btn-blue">Beställ online &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       GALLERI
+  ============================================================ -->
+  <section class="gallery" id="galleri">
+    <div class="gallery__inner">
+      <div class="gallery__header reveal">
+        <div>
+          <p class="label gallery__label">Smakbilder</p>
+          <h2 class="heading gallery__title">Galleri</h2>
+        </div>
+      </div>
+      <div class="gallery__grid">
+        <div class="gallery__item reveal" data-index="0">
+          <img src="Brand_guidlines/Bilder_på_mat/DSC01836-Enhanced-NR.jpg" alt="Mat från Berra Burra" loading="lazy">
+        </div>
+        <div class="gallery__item reveal reveal-delay-1" data-index="1">
+          <img src="Brand_guidlines/Bilder_på_mat/DSC01852-Enhanced-NR.jpg" alt="Mat från Berra Burra" loading="lazy">
+        </div>
+        <div class="gallery__item reveal reveal-delay-2" data-index="2">
+          <img src="Brand_guidlines/Bilder_på_mat/DSC01862-Enhanced-NR.jpg" alt="Mat från Berra Burra" loading="lazy">
+        </div>
+        <div class="gallery__item reveal" data-index="3">
+          <img src="Brand_guidlines/Bilder_på_mat/DSC01841-Enhanced-NR.jpg" alt="Mat från Berra Burra" loading="lazy">
+        </div>
+        <div class="gallery__item reveal reveal-delay-1" data-index="4">
+          <img src="Brand_guidlines/Bilder_på_mat/DSC01868-Enhanced-NR.jpg" alt="Mat från Berra Burra" loading="lazy">
+        </div>
+        <div class="gallery__item reveal reveal-delay-2" data-index="5">
+          <img src="Brand_guidlines/Bilder_på_mat/DSC01873-Enhanced-NR.jpg" alt="Mat från Berra Burra" loading="lazy">
+        </div>
+        <div class="gallery__item reveal reveal-delay-3" data-index="6">
+          <img src="Brand_guidlines/Bilder_på_mat/DSC01884-Enhanced-NR.jpg" alt="Mat från Berra Burra" loading="lazy">
+        </div>
+        <div class="gallery__item reveal" data-index="7">
+          <img src="Brand_guidlines/Bilder_på_mat/DSC01893-Enhanced-NR.jpg" alt="Mat från Berra Burra" loading="lazy">
+        </div>
+        <div class="gallery__item reveal reveal-delay-1" data-index="8">
+          <img src="Brand_guidlines/Bilder_på_mat/DSC01901-Enhanced-NR.jpg" alt="Mat från Berra Burra" loading="lazy">
+        </div>
+        <div class="gallery__item reveal reveal-delay-2" data-index="9">
+          <img src="Brand_guidlines/Bilder_på_mat/DSC01922-Enhanced-NR.jpg" alt="Mat från Berra Burra" loading="lazy">
+        </div>
+        <div class="gallery__item reveal reveal-delay-3" data-index="10">
+          <img src="Brand_guidlines/Bilder_på_mat/DSC01938-Enhanced-NR.jpg" alt="Mat från Berra Burra" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       RESTAURANGER
+  ============================================================ -->
+  <section class="locations" id="restauranger">
+    <div class="locations__inner">
+      <div class="locations__header reveal">
+        <p class="label">Restauranger</p>
+        <h2 class="heading locations__title">Hitta oss</h2>
+      </div>
+      <div class="locations__grid">
+        <!-- Nora -->
+        <a class="location-link reveal" href="nora.html">
+          <div class="location-card">
+            <div class="location-card-img">
+              <img src="Brand_guidlines/Bilder_på_mat/DSC01893-Enhanced-NR.jpg" alt="Berra Burra Nora" loading="lazy">
+            </div>
+            <span class="location-card__tag">Ursprunget sedan 1997</span>
+            <div class="location-card__city">Nora</div>
+            <div class="location-card__address">
+              Storgatan 1<br>
+              713 30 Nora<br><br>
+              073 337 79 81<br>
+              info@berraburra.se
+            </div>
+            <div class="location-card__divider"></div>
+            <div class="location-card__hours-label">Öppettider</div>
+            <div class="location-card__hour-row"><span>Mån – Fre</span><span>10:00 – 21:00</span></div>
+            <div class="location-card__hour-row"><span>Lördag</span><span>11:00 – 22:00</span></div>
+            <div class="location-card__hour-row"><span>Söndag</span><span>12:00 – 20:00</span></div>
+            <span class="location-card__cta">Läs mer om Nora →</span>
+          </div>
+        </a>
+
+        <!-- Örebro -->
+        <a class="location-link reveal reveal-delay-1" href="orebro.html">
+          <div class="location-card">
+            <div class="location-card-img">
+              <img src="Brand_guidlines/Bilder_på_mat/DSC01938-Enhanced-NR.jpg" alt="Berra Burra Örebro" loading="lazy">
+            </div>
+            <span class="location-card__tag">Ny restaurang</span>
+            <div class="location-card__city">Örebro</div>
+            <div class="location-card__address">
+              Drottninggatan 10<br>
+              702 10 Örebro<br><br>
+              073 337 79 82<br>
+              orebro@berraburra.se
+            </div>
+            <div class="location-card__divider"></div>
+            <div class="location-card__hours-label">Öppettider</div>
+            <div class="location-card__hour-row"><span>Mån – Fre</span><span>10:00 – 22:00</span></div>
+            <div class="location-card__hour-row"><span>Lördag</span><span>11:00 – 23:00</span></div>
+            <div class="location-card__hour-row"><span>Söndag</span><span>12:00 – 21:00</span></div>
+            <span class="location-card__cta">Läs mer om Örebro →</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       KONTAKT
+  ============================================================ -->
+  <section class="contact" id="kontakt">
+    <div class="contact__inner">
+      <!-- Vänster: Info -->
+      <div>
+        <p class="contact__label label reveal">Kontakt</p>
+        <h2 class="heading contact__title reveal">Hör av dig!</h2>
+
+        <div class="contact__info-item reveal">
+          <div class="contact__info-icon">📧</div>
+          <div>
+            <div class="contact__info-detail-label">E-post</div>
+            <div class="contact__info-detail-value">
+              <a href="mailto:info@berraburra.se">info@berraburra.se</a>
+            </div>
+          </div>
+        </div>
+        <div class="contact__info-item reveal">
+          <div class="contact__info-icon">📞</div>
+          <div>
+            <div class="contact__info-detail-label">Telefon</div>
+            <div class="contact__info-detail-value">
+              <a href="tel:+46733377981">073 337 79 81</a>
+            </div>
+          </div>
+        </div>
+        <div class="contact__info-item reveal">
+          <div class="contact__info-icon">📍</div>
+          <div>
+            <div class="contact__info-detail-label">Adress</div>
+            <div class="contact__info-detail-value">Storgatan 1, 713 30 Nora</div>
+          </div>
+        </div>
+        <div class="contact__info-item reveal">
+          <div class="contact__info-icon">📱</div>
+          <div>
+            <div class="contact__info-detail-label">Sociala medier</div>
+            <div class="contact__info-detail-value">
+              <a href="#">@berraburra</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Höger: Formulär -->
+      <div class="reveal">
+        <form class="contact__form" novalidate>
+          <h3 class="contact__form-title">Skicka meddelande</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Namn</label>
+              <input type="text" id="name" name="name" placeholder="Ditt namn" autocomplete="name">
+            </div>
+            <div class="form-group">
+              <label for="email">E-post</label>
+              <input type="email" id="email" name="email" placeholder="din@email.se" autocomplete="email">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="subject">Ärende</label>
+            <input type="text" id="subject" name="subject" placeholder="Vad gäller det?">
+          </div>
+          <div class="form-group">
+            <label for="message">Meddelande</label>
+            <textarea id="message" name="message" placeholder="Ditt meddelande..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-yellow form-submit">Skicka meddelande</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       LIGHTBOX
+  ============================================================ -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Bildvisare">
+    <button class="lightbox__close" id="lb-close" aria-label="Stäng">×</button>
+    <button class="lightbox__prev" id="lb-prev" aria-label="Föregående bild">‹</button>
+    <img class="lightbox__img" id="lb-img" src="" alt="Berra Burra mat">
+    <button class="lightbox__next" id="lb-next" aria-label="Nästa bild">›</button>
+  </div>
+
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__grid">
+        <!-- Brand -->
+        <div class="footer__col">
+          <img src="Brand_guidlines/BERRABURRA_Logo-2_yellow.png" alt="Berra Burra" class="footer__logo">
+          <p class="footer__brand-tagline">Kebab med kärlek och hantverk sedan 1997 i Nora.</p>
+        </div>
+        <!-- Navigering -->
+        <div class="footer__col">
+          <div class="footer__col-title">Navigering</div>
+          <ul>
+            <li><a href="#om-oss">Om oss</a></li>
+            <li><a href="#meny">Meny</a></li>
+            <li><a href="#galleri">Galleri</a></li>
+            <li><a href="#restauranger">Restauranger</a></li>
+            <li><a href="#kontakt">Kontakt</a></li>
+          </ul>
+        </div>
+        <!-- Beställ -->
+        <div class="footer__col">
+          <div class="footer__col-title">Beställ</div>
+          <ul>
+            <li><a href="#">Beställ online</a></li>
+            <li><a href="#">Foodora</a></li>
+            <li><a href="#">Wolt</a></li>
+            <li><a href="#">Takeaway</a></li>
+          </ul>
+        </div>
+        <!-- Kontakt -->
+        <div class="footer__col">
+          <div class="footer__col-title">Kontakt</div>
+          <ul>
+            <li><a href="mailto:info@berraburra.se">info@berraburra.se</a></li>
+            <li><a href="tel:+46733377981">073 337 79 81</a></li>
+            <li><a href="#">@berraburra</a></li>
+            <li><a href="#">berraburra.se</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__copy">© 2026 Berra Burra. Alla rättigheter förbehållna.</p>
+        <div class="footer__socials">
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+          <a href="#">TikTok</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ============================================================
+       JAVASCRIPT
+  ============================================================ -->
+  <script>
+    // --- Sticky nav ---
+    const nav = document.getElementById('nav');
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      nav.classList.toggle('scrolled', y > 20);
+      lastScroll = y;
+    }, { passive: true });
+
+    // --- Hamburger / Mobile menu ---
+    const btn     = document.getElementById('hamburger');
+    const mobileM = document.getElementById('mobile-menu');
+
+    btn.addEventListener('click', () => {
+      const open = btn.classList.toggle('open');
+      mobileM.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', open);
+      mobileM.setAttribute('aria-hidden', !open);
+    });
+
+    // Stäng vid länk-klick
+    mobileM.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        btn.classList.remove('open');
+        mobileM.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+        mobileM.setAttribute('aria-hidden', 'true');
+      });
+    });
+
+    // --- Scroll reveal ---
+    const revealOpts = { threshold: 0.12, rootMargin: '0px 0px -40px 0px' };
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObs.unobserve(entry.target);
+        }
+      });
+    }, revealOpts);
+
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+    // --- Galleri lightbox ---
+    const galleryItems = document.querySelectorAll('.gallery__item');
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lb-img');
+    let currentIdx = 0;
+    const galleryImages = [...galleryItems].map(el => ({
+      src: el.querySelector('img').src,
+      alt: el.querySelector('img').alt
+    }));
+
+    galleryItems.forEach((item, i) => {
+      item.addEventListener('click', () => openLightbox(i));
+    });
+
+    function openLightbox(i) {
+      currentIdx = i;
+      lbImg.src = galleryImages[i].src;
+      lbImg.alt = galleryImages[i].alt;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('lb-close').addEventListener('click', closeLightbox);
+    document.getElementById('lb-prev').addEventListener('click', () => {
+      openLightbox((currentIdx - 1 + galleryImages.length) % galleryImages.length);
+    });
+    document.getElementById('lb-next').addEventListener('click', () => {
+      openLightbox((currentIdx + 1) % galleryImages.length);
+    });
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e => {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') openLightbox((currentIdx - 1 + galleryImages.length) % galleryImages.length);
+      if (e.key === 'ArrowRight') openLightbox((currentIdx + 1) % galleryImages.length);
+    });
+
+    // --- Kontaktformulär (enkel feedback) ---
+    const form = document.querySelector('.contact__form');
+    if (form) {
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        const btn = form.querySelector('button[type="submit"]');
+        btn.textContent = 'Skickat! ✓';
+        btn.disabled = true;
+        btn.style.opacity = '0.7';
+        setTimeout(() => {
+          btn.textContent = 'Skicka meddelande';
+          btn.disabled = false;
+          btn.style.opacity = '';
+          form.reset();
+        }, 3000);
+      });
+    }
+  </script>
+</body>
+</html>

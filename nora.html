@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Berra Burra – Nora</title>
+  <link rel="icon" type="image/png" href="Brand_guidlines/BERRABURRA_Monogram_blue.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+
+  <style>
+    @font-face { font-family: 'Flama'; src: url('Brand_guidlines/Flama-Book.otf') format('opentype'); font-weight: 300; font-display: swap; }
+    @font-face { font-family: 'Flama'; src: url('Brand_guidlines/Flama-Basic.otf') format('opentype'); font-weight: 400; font-display: swap; }
+    @font-face { font-family: 'Flama'; src: url('Brand_guidlines/Flama-Medium.otf') format('opentype'); font-weight: 500; font-display: swap; }
+    @font-face { font-family: 'Flama'; src: url('Brand_guidlines/Flama-Semibold.otf') format('opentype'); font-weight: 600; font-display: swap; }
+    @font-face { font-family: 'Flama'; src: url('Brand_guidlines/Flama-Bold.otf') format('opentype'); font-weight: 700; font-display: swap; }
+    @font-face { font-family: 'Flama'; src: url('Brand_guidlines/Flama-Black.otf') format('opentype'); font-weight: 900; font-display: swap; }
+    @font-face { font-family: 'FlamaCondensed'; src: url('Brand_guidlines/FlamaCondensed-Bold.otf') format('opentype'); font-weight: 700; font-display: swap; }
+    @font-face { font-family: 'FlamaCondensed'; src: url('Brand_guidlines/FlamaCondensed-Medium.otf') format('opentype'); font-weight: 500; font-display: swap; }
+
+    :root {
+      --blue: #00236C; --yellow: #FFD680; --cream: #FFF5CC;
+      --red: #F9423A; --white: #FFFFFF; --black: #000000;
+      --sans: 'Flama','Inter','Helvetica Neue',Helvetica,Arial,sans-serif;
+      --cond: 'FlamaCondensed','Inter Condensed','Helvetica Neue',Helvetica,Arial,sans-serif;
+      --script: 'Pacifico',cursive;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: var(--sans); background: var(--cream); color: var(--blue); overflow-x: hidden; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    /* NAV */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: var(--cream); border-bottom: 1px solid rgba(0,35,108,0.10);
+      transition: box-shadow 0.3s;
+    }
+    .nav.scrolled { box-shadow: 0 2px 24px rgba(0,35,108,0.12); }
+    .nav__inner {
+      max-width: 1400px; margin: 0 auto; padding: 0 32px;
+      height: 76px; display: flex; align-items: center;
+      justify-content: space-between; gap: 32px;
+    }
+    .nav__logo { height: 38px; width: auto; }
+    .nav__links { display: flex; align-items: center; gap: 36px; list-style: none; }
+    .nav__links a { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); transition: opacity 0.2s; }
+    .nav__links a:hover { opacity: 0.5; }
+    .nav__back { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); transition: opacity 0.2s; }
+    .nav__back:hover { opacity: 0.6; }
+    .nav__cta { background: var(--red); color: var(--white); padding: 10px 22px; font-family: var(--cond),var(--sans); font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; transition: background 0.2s; }
+    .nav__cta:hover { background: var(--blue); }
+
+    /* HERO */
+    .loc-hero {
+      min-height: 72vh;
+      padding-top: 76px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+    }
+    .loc-hero__bg {
+      position: absolute; inset: 0;
+      background-image: url('Brand_guidlines/Bilder_på_mat/DSC01836-Enhanced-NR.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+    .loc-hero__overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,35,108,0.92) 0%, rgba(0,35,108,0.45) 60%, rgba(0,35,108,0.1) 100%);
+    }
+    .loc-hero__content {
+      position: relative; z-index: 1;
+      max-width: 1200px; width: 100%; margin: 0 auto;
+      padding: 60px 64px;
+    }
+    .loc-hero__tag { font-size: 11px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--red); margin-bottom: 16px; }
+    .loc-hero__city { font-family: var(--cond),var(--sans); font-size: clamp(72px, 12vw, 160px); font-weight: 700; color: var(--yellow); text-transform: uppercase; letter-spacing: 0.04em; line-height: 1; }
+    .loc-hero__sub { font-size: 18px; font-weight: 300; color: rgba(255,214,128,0.75); margin-top: 16px; }
+
+    /* INFO SECTION */
+    .loc-info {
+      padding: 100px 0;
+      background: var(--cream);
+    }
+    .loc-info__inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 64px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
+    }
+    .loc-info__block { margin-bottom: 48px; }
+    .loc-info__label { font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.45; margin-bottom: 12px; }
+    .loc-info__value { font-size: 18px; font-weight: 400; line-height: 1.8; }
+    .loc-info__value a { color: var(--blue); border-bottom: 1px solid rgba(0,35,108,0.2); transition: border-color 0.2s; }
+    .loc-info__value a:hover { border-color: var(--blue); }
+    .loc-info__divider { width: 48px; height: 2px; background: rgba(0,35,108,0.15); margin: 48px 0; }
+    .loc-info__hours { }
+    .loc-info__hour-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(0,35,108,0.08); font-size: 15px; gap: 24px; }
+    .loc-info__hour-row span:last-child { font-weight: 600; }
+
+    /* MAP PLACEHOLDER */
+    .loc-map {
+      width: 100%; aspect-ratio: 4/3; border-radius: 8px;
+      background: var(--blue); overflow: hidden; position: relative;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .loc-map__pattern {
+      position: absolute; inset: 0;
+      background-image: url('Brand_guidlines/BERRABURRA_Monogram_yellow.png');
+      background-size: 120px; background-repeat: repeat; opacity: 0.06;
+    }
+    .loc-map__placeholder {
+      position: relative; z-index: 1; text-align: center; color: var(--yellow);
+    }
+    .loc-map__icon { font-size: 48px; margin-bottom: 16px; }
+    .loc-map__text { font-family: var(--cond),var(--sans); font-size: 15px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.7; }
+    .loc-map__link { display: inline-block; margin-top: 20px; background: var(--yellow); color: var(--blue); padding: 12px 28px; font-family: var(--cond),var(--sans); font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; transition: background 0.2s; }
+    .loc-map__link:hover { background: #ffc940; }
+
+    /* GALLERY */
+    .loc-gallery { padding: 80px 0; background: var(--blue); }
+    .loc-gallery__inner { max-width: 1200px; margin: 0 auto; padding: 0 64px; }
+    .loc-gallery__label { font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,214,128,0.45); margin-bottom: 8px; }
+    .loc-gallery__title { font-family: var(--cond),var(--sans); font-size: clamp(36px, 5vw, 64px); font-weight: 700; color: var(--yellow); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 40px; }
+    .loc-gallery__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .loc-gallery__item { aspect-ratio: 4/3; overflow: hidden; }
+    .loc-gallery__item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s; }
+    .loc-gallery__item:hover img { transform: scale(1.06); }
+
+    /* CTA STRIP */
+    .loc-cta {
+      background: var(--yellow); padding: 80px 0;
+      text-align: center;
+    }
+    .loc-cta__inner { max-width: 700px; margin: 0 auto; padding: 0 32px; }
+    .loc-cta__title { font-family: var(--cond),var(--sans); font-size: clamp(36px, 5vw, 64px); font-weight: 700; color: var(--blue); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 24px; }
+    .loc-cta__sub { font-size: 16px; color: rgba(0,35,108,0.65); margin-bottom: 36px; line-height: 1.7; }
+    .loc-cta__buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 36px; font-family: var(--cond),var(--sans); font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; transition: all 0.22s ease; white-space: nowrap; }
+    .btn-blue { background: var(--blue); color: var(--yellow); }
+    .btn-blue:hover { background: #001a52; }
+    .btn-outline-blue { background: transparent; color: var(--blue); border: 2px solid var(--blue); }
+    .btn-outline-blue:hover { background: var(--blue); color: var(--yellow); }
+
+    /* FOOTER */
+    .loc-footer { background: var(--blue); border-top: 1px solid rgba(255,214,128,0.12); padding: 40px 0; }
+    .loc-footer__inner { max-width: 1200px; margin: 0 auto; padding: 0 64px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+    .loc-footer__logo { height: 48px; }
+    .loc-footer__copy { font-size: 12px; color: rgba(255,214,128,0.3); }
+    .loc-footer__back { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,214,128,0.5); transition: color 0.2s; }
+    .loc-footer__back:hover { color: var(--yellow); }
+
+    @media (max-width: 768px) {
+      .loc-hero__content { padding: 40px 24px; }
+      .loc-info__inner { grid-template-columns: 1fr; gap: 48px; padding: 0 24px; }
+      .loc-info { padding: 64px 0; }
+      .loc-gallery__inner { padding: 0 24px; }
+      .loc-gallery__grid { grid-template-columns: repeat(2, 1fr); }
+      .loc-footer__inner { padding: 0 24px; flex-direction: column; text-align: center; }
+      .nav__links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" aria-label="Tillbaka till startsidan">
+        <img src="Brand_guidlines/BERRABURRA_Logo-1_blue.png" alt="Berra Burra" class="nav__logo">
+      </a>
+      <ul class="nav__links">
+        <li><a href="index.html#om-oss">Om oss</a></li>
+        <li><a href="index.html#meny">Meny</a></li>
+        <li><a href="index.html#restauranger">Restauranger</a></li>
+        <li><a href="orebro.html">Örebro</a></li>
+      </ul>
+      <a href="#" class="nav__cta">Beställ online</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="loc-hero">
+    <div class="loc-hero__bg"></div>
+    <div class="loc-hero__overlay"></div>
+    <div class="loc-hero__content">
+      <p class="loc-hero__tag">Ursprunget sedan 1997</p>
+      <div class="loc-hero__city">Nora</div>
+      <p class="loc-hero__sub">Berra Burra – kebab med kärlek, precis som alltid</p>
+    </div>
+  </section>
+
+  <!-- INFO -->
+  <section class="loc-info">
+    <div class="loc-info__inner">
+      <!-- Vänster: Info -->
+      <div>
+        <div class="loc-info__block">
+          <div class="loc-info__label">Adress</div>
+          <div class="loc-info__value">
+            Storgatan 1<br>
+            713 30 Nora
+          </div>
+        </div>
+        <div class="loc-info__block">
+          <div class="loc-info__label">Telefon</div>
+          <div class="loc-info__value">
+            <a href="tel:+46733377981">073 337 79 81</a>
+          </div>
+        </div>
+        <div class="loc-info__block">
+          <div class="loc-info__label">E-post</div>
+          <div class="loc-info__value">
+            <a href="mailto:info@berraburra.se">info@berraburra.se</a>
+          </div>
+        </div>
+        <div class="loc-info__divider"></div>
+        <div class="loc-info__label" style="margin-bottom:16px;">Öppettider</div>
+        <div class="loc-info__hours">
+          <div class="loc-info__hour-row"><span>Måndag – Fredag</span><span>10:00 – 21:00</span></div>
+          <div class="loc-info__hour-row"><span>Lördag</span><span>11:00 – 22:00</span></div>
+          <div class="loc-info__hour-row"><span>Söndag</span><span>12:00 – 20:00</span></div>
+        </div>
+      </div>
+
+      <!-- Höger: Karta -->
+      <div>
+        <div class="loc-map">
+          <div class="loc-map__pattern"></div>
+          <div class="loc-map__placeholder">
+            <div class="loc-map__icon">📍</div>
+            <div class="loc-map__text">Storgatan 1, Nora</div>
+            <a href="https://maps.google.com/?q=Storgatan+1+Nora+Sverige" target="_blank" rel="noopener" class="loc-map__link">Öppna i Google Maps</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="loc-gallery">
+    <div class="loc-gallery__inner">
+      <p class="loc-gallery__label">Smakbilder</p>
+      <h2 class="loc-gallery__title">Vår mat</h2>
+      <div class="loc-gallery__grid">
+        <div class="loc-gallery__item"><img src="Brand_guidlines/Bilder_på_mat/DSC01841-Enhanced-NR.jpg" alt="Mat från Berra Burra Nora" loading="lazy"></div>
+        <div class="loc-gallery__item"><img src="Brand_guidlines/Bilder_på_mat/DSC01852-Enhanced-NR.jpg" alt="Mat från Berra Burra Nora" loading="lazy"></div>
+        <div class="loc-gallery__item"><img src="Brand_guidlines/Bilder_på_mat/DSC01901-Enhanced-NR.jpg" alt="Mat från Berra Burra Nora" loading="lazy"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="loc-cta">
+    <div class="loc-cta__inner">
+      <h2 class="loc-cta__title">Beställ från Nora</h2>
+      <p class="loc-cta__sub">Hämta upp i restaurangen eller få hem maten via våra leveranspartners. Alltid lika gott!</p>
+      <div class="loc-cta__buttons">
+        <a href="#" class="btn btn-blue">Beställ online</a>
+        <a href="index.html" class="btn btn-outline-blue">← Tillbaka till startsidan</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="loc-footer">
+    <div class="loc-footer__inner">
+      <img src="Brand_guidlines/BERRABURRA_Logo-2_yellow.png" alt="Berra Burra" class="loc-footer__logo">
+      <p class="loc-footer__copy">© 2026 Berra Burra. Alla rättigheter förbehållna.</p>
+      <a href="index.html" class="loc-footer__back">← Startsidan</a>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+  </script>
+</body>
+</html>
