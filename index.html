@@ -378,20 +378,18 @@
 
     .hero__main {
       flex: 1;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
+      display: flex;
+      align-items: flex-end;
       max-width: 1400px;
       width: 100%;
       margin: 0 auto;
       padding: 60px 64px;
-      gap: 48px;
       position: relative;
       z-index: 2;
     }
 
     /* Left text column */
-    .hero__text { }
+    .hero__text { max-width: 560px; }
     .hero__est {
       display: inline-flex;
       align-items: center;
@@ -1503,32 +1501,6 @@
         </div>
       </div>
 
-      <!-- Höger: Visuell -->
-      <div class="hero__visual">
-        <div class="hero__circle-wrap">
-          <div class="hero__circle">
-            <img
-              src="Brand_guidlines/BERRABURRA_Logo-2_blue.png"
-              alt="Berra Burra logotyp"
-              class="hero__circle-logo"
-            >
-          </div>
-          <!-- Flytande matbild -->
-          <div class="hero__food-card">
-            <img src="Brand_guidlines/Bilder_på_mat/DSC01922-Enhanced-NR.jpg" alt="Berra Burra specialrätt" loading="lazy">
-          </div>
-          <!-- Karaktärer i nederkant av cirkeln -->
-          <div class="hero__ikoner">
-            <img src="Brand_guidlines/BERRABURRA_Ikon_1.png" alt="Berra" class="hero__ikon">
-            <img src="Brand_guidlines/BERRABURRA_Ikon_2.png" alt="Burra" class="hero__ikon">
-          </div>
-          <!-- Pris-badge -->
-          <div class="hero__badge" aria-label="Special 145 kronor">
-            <span class="hero__badge-label">Special!</span>
-            <span class="hero__badge-price">145:-</span>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 
