@@ -172,11 +172,15 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 1000;
-      background: var(--cream);
-      border-bottom: 1px solid rgba(0,35,108,0.10);
+      background: transparent;
+      border-bottom: 1px solid transparent;
       transition: background 0.38s ease, border-color 0.38s ease, box-shadow 0.3s;
     }
-    .nav.scrolled { box-shadow: 0 2px 24px rgba(0,35,108,0.12); }
+    .nav.scrolled {
+      background: var(--cream);
+      border-bottom-color: rgba(0,35,108,0.10);
+      box-shadow: 0 2px 24px rgba(0,35,108,0.12);
+    }
     .nav__inner {
       max-width: 1400px;
       margin: 0 auto;
@@ -188,10 +192,15 @@
       gap: 32px;
     }
 
-    /* Logo – stacked swap (blue default, yellow on transparent mobile nav) */
+    /* Logo – stacked swap (yellow default, blue on scrolled) */
     .nav__logo-link { position: relative; display: inline-block; line-height: 0; }
     .nav__logo { height: 38px; width: auto; display: block; transition: opacity 0.38s ease; }
     .nav__logo--yellow { position: absolute; top: 0; left: 0; opacity: 0; pointer-events: none; }
+
+    /* Transparent nav state (default) */
+    .nav:not(.scrolled) .nav__logo--blue  { opacity: 0; }
+    .nav:not(.scrolled) .nav__logo--yellow { opacity: 1; }
+
     .nav__links {
       display: flex;
       align-items: center;
@@ -204,8 +213,9 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--blue);
-      transition: opacity 0.2s;
+      transition: opacity 0.2s, color 0.38s ease;
     }
+    .nav:not(.scrolled) .nav__links a { color: rgba(255,255,255,0.85); }
     .nav__links a:hover { opacity: 0.5; }
     .nav__actions { display: flex; align-items: center; gap: 12px; }
     .nav__cta {
@@ -1270,19 +1280,6 @@
     }
 
     @media (max-width: 768px) {
-      /* ── Transparent nav ── */
-      .nav {
-        background: transparent;
-        border-bottom-color: transparent;
-      }
-      .nav.scrolled {
-        background: var(--cream);
-        border-bottom-color: rgba(0,35,108,0.10);
-      }
-      /* Show yellow logo on transparent nav, fade to blue on scroll */
-      .nav:not(.scrolled) .nav__logo--blue  { opacity: 0; }
-      .nav:not(.scrolled) .nav__logo--yellow { opacity: 1; }
-
       /* Smaller logo + tighter padding on mobile */
       .nav__inner { padding: 0 16px; gap: 12px; }
       .nav__logo  { height: 20px; }
@@ -1601,7 +1598,7 @@
     <div class="featured__pattern"></div>
     <div class="featured__inner">
       <div class="reveal">
-        <p class="featured__label">Veckans special</p>
+        <p class="featured__label">Månadens lunch</p>
         <h2 class="featured__title">Lyxpita</h2>
         <div class="featured__price">145 kr</div>
         <p class="featured__desc">
@@ -1612,10 +1609,6 @@
       <div class="featured__right reveal reveal-delay-2">
         <div class="featured__dish-frame">
           <img src="Brand_guidlines/Bilder_på_mat/DSC01868-Enhanced-NR.jpg" alt="Lyxpita från Berra Burra" loading="lazy">
-        </div>
-        <div class="featured__chars-small featured__characters">
-          <img src="Brand_guidlines/BERRABURRA_Ikon_3.png" alt="Berra karaktär" class="featured__char">
-          <img src="Brand_guidlines/BERRABURRA_Ikon_4.png" alt="Burra karaktär" class="featured__char">
         </div>
       </div>
     </div>
