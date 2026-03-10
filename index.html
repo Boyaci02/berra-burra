@@ -332,7 +332,7 @@
     =========================== */
     .hero {
       min-height: 100svh;
-      background: var(--cream);
+      background: var(--blue);
       padding-top: 76px;
       display: flex;
       flex-direction: column;
@@ -340,16 +340,30 @@
       position: relative;
     }
 
-    /* Subtle BB pattern overlay */
+    /* Video background */
+    .hero__video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    /* Dark gradient overlay for readability */
     .hero::before {
       content: '';
       position: absolute;
       inset: 0;
-      background-image: url('Brand_guidlines/BERRABURRA_Monogram_blue.png');
-      background-size: 80px 80px;
-      background-repeat: repeat;
-      opacity: 0.025;
+      background-image: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.15) 0%,
+        rgba(0,35,108,0.45) 50%,
+        rgba(0,0,0,0.80) 100%
+      );
       pointer-events: none;
+      z-index: 1;
+      opacity: 1;
     }
 
     .hero__main {
@@ -363,7 +377,7 @@
       padding: 60px 64px;
       gap: 48px;
       position: relative;
-      z-index: 1;
+      z-index: 2;
     }
 
     /* Left text column */
@@ -377,32 +391,38 @@
     .hero__est-line {
       width: 32px;
       height: 2px;
-      background: var(--blue);
-      opacity: 0.4;
+      background: rgba(255,255,255,0.45);
+      opacity: 1;
     }
     .hero__est-label {
       font-size: 11px;
       font-weight: 600;
       letter-spacing: 0.25em;
       text-transform: uppercase;
-      opacity: 0.5;
-    }
-    .hero__greeting {
-      font-family: var(--script);
-      font-size: clamp(52px, 6.5vw, 100px);
-      color: var(--blue);
-      line-height: 1.05;
-      margin-bottom: 32px;
+      color: rgba(255,255,255,0.65);
+      opacity: 1;
     }
     .hero__subtitle {
       font-size: clamp(15px, 1.4vw, 18px);
       font-weight: 300;
       line-height: 1.7;
-      opacity: 0.7;
+      color: rgba(255,255,255,0.80);
+      opacity: 1;
       max-width: 440px;
       margin-bottom: 40px;
     }
     .hero__buttons { display: flex; gap: 14px; flex-wrap: wrap; }
+    .hero__buttons .btn-blue { background: var(--yellow); color: var(--blue); }
+    .hero__buttons .btn-blue:hover { background: #ffc940; }
+    .hero__buttons .btn-outline-blue {
+      border-color: rgba(255,255,255,0.55);
+      color: var(--white);
+      background: rgba(255,255,255,0.08);
+    }
+    .hero__buttons .btn-outline-blue:hover {
+      background: rgba(255,255,255,0.18);
+      border-color: rgba(255,255,255,0.8);
+    }
 
     /* Right visual */
     .hero__visual {
@@ -1265,7 +1285,7 @@
 
       /* Smaller logo + tighter padding on mobile */
       .nav__inner { padding: 0 16px; gap: 12px; }
-      .nav__logo  { height: 26px; }
+      .nav__logo  { height: 20px; }
 
       /* Show order button in nav on mobile, hide text links */
       .nav__links { display: none; }
@@ -1279,24 +1299,7 @@
       .hamburger { display: flex; }
 
       /* ── Full-screen hero ── */
-      .hero {
-        background-image: url('Brand_guidlines/Bilder_på_mat/DSC01922-Enhanced-NR.jpg');
-        background-size: cover;
-        background-position: center;
-        background-color: var(--blue);
-      }
-      /* Override monogram pattern with dark gradient overlay */
-      .hero::before {
-        background-image: linear-gradient(
-          to bottom,
-          rgba(0,35,108,0.50) 0%,
-          rgba(0,35,108,0.82) 100%
-        );
-        background-size: 100%;
-        background-repeat: no-repeat;
-        opacity: 1;
-      }
-      /* Full-screen photo, content bottom-aligned */
+      /* Full-screen video, content bottom-aligned */
       .hero__main {
         display: flex;
         flex-direction: column;
@@ -1507,15 +1510,15 @@
        HERO
   ============================================================ -->
   <section class="hero" id="hem">
+    <video class="hero__video" autoplay muted loop playsinline>
+      <source src="https://assets.cdn.filesafe.space/1FYpgqYgXr6SzFnCzKew/media/6702a78b644160e7fb29632e.mp4" type="video/mp4">
+    </video>
     <div class="hero__main">
       <!-- Vänster: Text -->
       <div class="hero__text">
         <div class="hero__est">
           <span class="hero__est-line"></span>
           <span class="hero__est-label label">Kebab sedan 1997 · Nora</span>
-        </div>
-        <div class="hero__greeting">
-          Hej!<br>Hej!<br>Tjena!<br>Tjena!
         </div>
         <p class="hero__subtitle">
           Välkommen till Berra Burra – kebabrestaurangen med hjärta, hantverk och ett vänligt bemötande sedan 1997. Riktigt god mat, lagad med stolthet.
