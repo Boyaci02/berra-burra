@@ -368,7 +368,7 @@
       background-image: linear-gradient(
         to bottom,
         rgba(0,0,0,0.15) 0%,
-        rgba(0,35,108,0.45) 50%,
+        rgba(0,0,0,0.45) 50%,
         rgba(0,0,0,0.80) 100%
       );
       pointer-events: none;
@@ -689,11 +689,10 @@
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
-      margin-bottom: 60px;
+      margin-bottom: 48px;
       gap: 24px;
       flex-wrap: wrap;
     }
-    .menu__title-wrap { }
     .menu__script {
       font-family: var(--script);
       font-size: clamp(52px, 7vw, 88px);
@@ -709,34 +708,75 @@
       opacity: 0.5;
       margin-top: 4px;
     }
-    .menu__grid {
+    /* Tabs */
+    .menu__tabs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      margin-bottom: 40px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .menu__tabs::-webkit-scrollbar { display: none; }
+    .menu__tab {
+      flex-shrink: 0;
+      padding: 10px 20px;
+      border: 2px solid var(--blue);
+      background: transparent;
+      color: var(--blue);
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .menu__tab:hover { background: rgba(0,35,108,0.08); }
+    .menu__tab.active { background: var(--blue); color: var(--yellow); }
+    /* Panels */
+    .menu__panel { display: none; }
+    .menu__panel.active { display: block; }
+    /* Panel grid */
+    .menu__panel-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 3px;
       margin-bottom: 48px;
     }
-    .menu__card {
+    .menu__cat {
       background: var(--blue);
-      padding: 52px 48px;
+      padding: 40px 44px;
     }
-    .menu__card:nth-child(2n) { background: rgba(0,27,82,0.88); }
-    .menu__card-title {
+    .menu__cat--wide { grid-column: span 2; }
+    .menu__cat-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,214,128,0.45);
+      margin-bottom: 4px;
+    }
+    .menu__cat-heading {
       font-family: var(--cond), var(--sans);
       font-size: 22px;
       font-weight: 700;
       color: var(--yellow);
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      margin-bottom: 8px;
+      margin-bottom: 20px;
     }
-    .menu__card-desc {
+    .menu__cat-desc {
       font-size: 13px;
       color: rgba(255,214,128,0.55);
       line-height: 1.6;
-      margin-bottom: 36px;
+      margin-bottom: 20px;
+      margin-top: -12px;
     }
-    .menu__items { list-style: none; }
-    .menu__item {
+    /* Item rows */
+    .menu__row {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
@@ -744,19 +784,37 @@
       border-bottom: 1px solid rgba(255,214,128,0.12);
       gap: 16px;
     }
-    .menu__item:first-child { border-top: 1px solid rgba(255,214,128,0.12); }
-    .menu__item-name { font-size: 14px; color: rgba(255,214,128,0.85); }
-    .menu__item-name strong { font-weight: 600; color: var(--yellow); }
-    .menu__item-price {
+    .menu__row:first-of-type { border-top: 1px solid rgba(255,214,128,0.12); }
+    .menu__row-info { flex: 1; }
+    .menu__row-name {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--yellow);
+    }
+    .menu__row-desc {
+      display: block;
+      font-size: 12px;
+      color: rgba(255,214,128,0.55);
+      line-height: 1.5;
+      margin-top: 3px;
+    }
+    .menu__row-price {
       font-family: var(--cond), var(--sans);
       font-size: 18px;
       font-weight: 700;
       color: var(--yellow);
       white-space: nowrap;
     }
+    .menu__row--sold-out .menu__row-name { opacity: 0.35; text-decoration: line-through; }
+    .menu__sold-out-tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--red);
+    }
     .menu__monogram {
-      position: relative;
-      grid-column: span 2;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -771,7 +829,7 @@
       color: var(--blue);
       opacity: 0.4;
     }
-    .menu__cta { text-align: center; }
+    .menu__cta { text-align: center; margin-top: 48px; }
 
     /* ===========================
        RESTAURANGER
@@ -1105,21 +1163,6 @@
     }
     .featured__chars-small .featured__char { width: 34%; max-width: 150px; }
 
-    /* ===========================
-       MENY – KORTBILD
-    =========================== */
-    .menu__card-img {
-      margin: -52px -48px 32px;
-      height: 200px;
-      overflow: hidden;
-    }
-    .menu__card-img img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.5s ease;
-    }
-    .menu__card:hover .menu__card-img img { transform: scale(1.06); }
 
     /* ===========================
        GALLERI
@@ -1144,8 +1187,9 @@
     .gallery__carousel { overflow: hidden; width: 100%; }
     .gallery__track {
       display: flex;
+      gap: 8px;
       width: max-content;
-      animation: gallery-scroll 28s linear infinite;
+      animation: gallery-scroll 50s linear infinite;
     }
     .gallery__track:hover { animation-play-state: paused; }
     .gallery__slide {
@@ -1294,8 +1338,8 @@
 
       .menu__inner { padding: 0 24px; }
       .menu { padding: 80px 0; }
-      .menu__grid { grid-template-columns: 1fr; }
-      .menu__monogram { grid-column: span 1; }
+      .menu__panel-grid { grid-template-columns: 1fr; }
+      .menu__cat--wide { grid-column: span 1; }
       .menu__header { flex-direction: column; align-items: flex-start; gap: 8px; }
 
       .locations__inner { padding: 0 24px; }
@@ -1592,109 +1636,467 @@
         <a href="#" class="btn btn-blue reveal">Beställ online</a>
       </div>
 
-      <div class="menu__grid">
-        <!-- Klassisk Pita -->
-        <div class="menu__card reveal">
-          <div class="menu__card-img">
-            <img src="Brand_guidlines/Bilder_på_mat/DSC01884-Enhanced-NR.jpg" alt="Klassisk Pita" loading="lazy">
-          </div>
-          <h3 class="menu__card-title">Klassisk Pita</h3>
-          <p class="menu__card-desc">Isbergssallad, tomat, rödlök, valfri sås, toppas med gräslök och rostad lök</p>
-          <ul class="menu__items">
-            <li class="menu__item">
-              <span class="menu__item-name"><strong>Kebab</strong> (kalv)</span>
-              <span class="menu__item-price">145:-</span>
-            </li>
-            <li class="menu__item">
-              <span class="menu__item-name"><strong>Gyros</strong> (fläsk)</span>
-              <span class="menu__item-price">145:-</span>
-            </li>
-            <li class="menu__item">
-              <span class="menu__item-name"><strong>Kyckling</strong></span>
-              <span class="menu__item-price">145:-</span>
-            </li>
-          </ul>
-        </div>
+      <!-- Tabs -->
+      <div class="menu__tabs" role="tablist">
+        <button class="menu__tab active" data-tab="tallrik" role="tab">Tallrik</button>
+        <button class="menu__tab" data-tab="rulle" role="tab">Rulle</button>
+        <button class="menu__tab" data-tab="pita" role="tab">Pita</button>
+        <button class="menu__tab" data-tab="sallad" role="tab">Sallad</button>
+        <button class="menu__tab" data-tab="pizza" role="tab">Pizza</button>
+        <button class="menu__tab" data-tab="falafel" role="tab">Falafel</button>
+        <button class="menu__tab" data-tab="hotcrispy" role="tab">Hot Crispy Chicken</button>
+        <button class="menu__tab" data-tab="sides" role="tab">Sides</button>
+        <button class="menu__tab" data-tab="kids" role="tab">Kids</button>
+        <button class="menu__tab" data-tab="milkshakes" role="tab">Milkshakes</button>
+        <button class="menu__tab" data-tab="saser" role="tab">Såser</button>
+        <button class="menu__tab" data-tab="dryck" role="tab">Dryck</button>
+        <button class="menu__tab" data-tab="presentkort" role="tab">Presentkort</button>
+      </div>
 
-        <!-- Lyxrulle -->
-        <div class="menu__card reveal reveal-delay-1">
-          <div class="menu__card-img">
-            <img src="Brand_guidlines/Bilder_på_mat/DSC01841-Enhanced-NR.jpg" alt="Lyxrulle" loading="lazy">
+      <!-- TALLRIK -->
+      <div class="menu__panel active" id="tab-tallrik">
+        <div class="menu__panel-grid">
+          <div class="menu__cat menu__cat--wide">
+            <p class="menu__cat-title">Tallrik</p>
+            <h3 class="menu__cat-heading">Tallrik</h3>
+            <div class="menu__row">
+              <div class="menu__row-info">
+                <span class="menu__row-name">Kebab tallrik</span>
+                <span class="menu__row-desc">Syrad rödkål, syrad gurka, lök och persilje-sallad, valfri sås, toppas med gräslök &amp; rostad lök</span>
+              </div>
+              <span class="menu__row-price">från 149 kr</span>
+            </div>
+            <div class="menu__row">
+              <div class="menu__row-info">
+                <span class="menu__row-name">Kyckling tallrik</span>
+                <span class="menu__row-desc">Syrad rödkål, syrad gurka, lök och persilje-sallad, valfri sås, toppas med gräslök &amp; rostad lök</span>
+              </div>
+              <span class="menu__row-price">från 149 kr</span>
+            </div>
+            <div class="menu__row">
+              <div class="menu__row-info">
+                <span class="menu__row-name">Gyros tallrik</span>
+                <span class="menu__row-desc">Syrad rödkål, syrad gurka, lök och persilje-sallad, valfri sås, toppas med gräslök &amp; rostad lök</span>
+              </div>
+              <span class="menu__row-price">från 149 kr</span>
+            </div>
+            <div class="menu__row">
+              <div class="menu__row-info">
+                <span class="menu__row-name">Falafel tallrik</span>
+                <span class="menu__row-desc">Rödkål, syrad gurka, lök-persiljesallad, peperoni, toppas med rostad lök och gräslök</span>
+              </div>
+              <span class="menu__row-price">från 145 kr</span>
+            </div>
           </div>
-          <h3 class="menu__card-title">Lyxrulle</h3>
-          <p class="menu__card-desc">Lök och persiljesallad, syrad rödkål, syrad gurka, valfri sås</p>
-          <ul class="menu__items">
-            <li class="menu__item">
-              <span class="menu__item-name"><strong>Kebab</strong> (kalv)</span>
-              <span class="menu__item-price">149:-</span>
-            </li>
-            <li class="menu__item">
-              <span class="menu__item-name"><strong>Gyros</strong> (fläsk)</span>
-              <span class="menu__item-price">149:-</span>
-            </li>
-            <li class="menu__item">
-              <span class="menu__item-name"><strong>Kyckling</strong></span>
-              <span class="menu__item-price">149:-</span>
-            </li>
-          </ul>
         </div>
+      </div>
 
-        <!-- Kebab Tallrik -->
-        <div class="menu__card reveal reveal-delay-2">
-          <div class="menu__card-img">
-            <img src="Brand_guidlines/Bilder_på_mat/DSC01901-Enhanced-NR.jpg" alt="Kebab Tallrik" loading="lazy">
+      <!-- RULLE -->
+      <div class="menu__panel" id="tab-rulle">
+        <div class="menu__panel-grid">
+          <div class="menu__cat">
+            <p class="menu__cat-title">Rulle</p>
+            <h3 class="menu__cat-heading">Lyx Rulle</h3>
+            <p class="menu__cat-desc">Lök och persilje-sallad, syrad rödkål, syrad gurka, valfri sås</p>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Kebab</span></div><span class="menu__row-price">från 149 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Kyckling</span></div><span class="menu__row-price">från 149 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Gyros</span></div><span class="menu__row-price">från 149 kr</span></div>
           </div>
-          <h3 class="menu__card-title">Kebab Tallrik</h3>
-          <p class="menu__card-desc">Serveras med sallad, tomat, rödlök och valfri sås. Välj tillbehör</p>
-          <ul class="menu__items">
-            <li class="menu__item">
-              <span class="menu__item-name"><strong>Kebab</strong> (kalv)</span>
-              <span class="menu__item-price">145:-</span>
-            </li>
-            <li class="menu__item">
-              <span class="menu__item-name"><strong>Gyros</strong> (fläsk)</span>
-              <span class="menu__item-price">145:-</span>
-            </li>
-            <li class="menu__item">
-              <span class="menu__item-name"><strong>Kyckling</strong></span>
-              <span class="menu__item-price">145:-</span>
-            </li>
-          </ul>
-        </div>
-
-        <!-- Dryck & Tillbehör -->
-        <div class="menu__card reveal reveal-delay-3">
-          <div class="menu__card-img">
-            <img src="Brand_guidlines/Bilder_på_mat/DSC01873-Enhanced-NR.jpg" alt="Tillbehör" loading="lazy">
+          <div class="menu__cat">
+            <p class="menu__cat-title">Rulle</p>
+            <h3 class="menu__cat-heading">Berliner Rulle</h3>
+            <p class="menu__cat-desc">Isbergssallad, syrad rödkål, rödlök, tomat, valfri sås</p>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Kebab</span></div><span class="menu__row-price">från 145 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Kyckling</span></div><span class="menu__row-price">från 145 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Gyros</span></div><span class="menu__row-price">från 145 kr</span></div>
           </div>
-          <h3 class="menu__card-title">Dryck &amp; Tillbehör</h3>
-          <p class="menu__card-desc">Komplettera din måltid med tillbehör och dryck från vår meny</p>
-          <ul class="menu__items">
-            <li class="menu__item">
-              <span class="menu__item-name">Pommes frites</span>
-              <span class="menu__item-price">39:-</span>
-            </li>
-            <li class="menu__item">
-              <span class="menu__item-name">Sötpotatis frites</span>
-              <span class="menu__item-price">45:-</span>
-            </li>
-            <li class="menu__item">
-              <span class="menu__item-name">Läsk (33 cl)</span>
-              <span class="menu__item-price">29:-</span>
-            </li>
-            <li class="menu__item">
-              <span class="menu__item-name">Vatten</span>
-              <span class="menu__item-price">19:-</span>
-            </li>
-          </ul>
+          <div class="menu__cat">
+            <p class="menu__cat-title">Rulle</p>
+            <h3 class="menu__cat-heading">Korean Rulle</h3>
+            <p class="menu__cat-desc">Gochujangsås, kålmix, picklad gurka, picklad rödlök, kimchi, rostad lök</p>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Kebab</span></div><span class="menu__row-price">från 149 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Kyckling</span></div><span class="menu__row-price">från 149 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Gyros</span></div><span class="menu__row-price">från 149 kr</span></div>
+          </div>
+          <div class="menu__cat">
+            <p class="menu__cat-title">Rulle</p>
+            <h3 class="menu__cat-heading">Michael Special</h3>
+            <p class="menu__cat-desc">Valfri sås, pommes, 2 habanero cheese, 2 jalapeno snack, 2 mac'n cheese bites, picklad rödlök och jalapeno</p>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Kebab</span></div><span class="menu__row-price">från 169 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Kyckling</span></div><span class="menu__row-price">från 169 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Gyros</span></div><span class="menu__row-price">från 169 kr</span></div>
+          </div>
+          <div class="menu__cat menu__cat--wide">
+            <p class="menu__cat-title">Rulle</p>
+            <h3 class="menu__cat-heading">Klassisk Rulle</h3>
+            <p class="menu__cat-desc">Isbergssallad, tomat, rödlök och valfri sås</p>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Kebab</span></div><span class="menu__row-price">från 145 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Kyckling</span></div><span class="menu__row-price">från 145 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Gyros</span></div><span class="menu__row-price">från 145 kr</span></div>
+          </div>
         </div>
+      </div>
 
-        <!-- Mönster-separator -->
-        <div class="menu__monogram" aria-hidden="true">
-          <img src="Brand_guidlines/BERRABURRA_Monogram_blue.png" alt="" class="menu__monogram-img">
-          <span class="menu__monogram-text">Berra Burra</span>
-          <img src="Brand_guidlines/BERRABURRA_Monogram_blue.png" alt="" class="menu__monogram-img">
+      <!-- PITA -->
+      <div class="menu__panel" id="tab-pita">
+        <div class="menu__panel-grid">
+          <div class="menu__cat">
+            <p class="menu__cat-title">Pita</p>
+            <h3 class="menu__cat-heading">Lyx Pita</h3>
+            <p class="menu__cat-desc">Krispsallad, lök-persilje-sallad, syrad rödkål, syrad gurka, valfri sås, toppas med gräslök &amp; rostad lök</p>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Kebab</span></div><span class="menu__row-price">från 149 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Kyckling</span></div><span class="menu__row-price">från 149 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Gyros</span></div><span class="menu__row-price">från 149 kr</span></div>
+          </div>
+          <div class="menu__cat">
+            <p class="menu__cat-title">Pita</p>
+            <h3 class="menu__cat-heading">Berliner Pita</h3>
+            <p class="menu__cat-desc">Isbergssallad, syrad rödkål, rödlök, tomat, valfri sås, toppas med gräslök &amp; rostad lök</p>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Kebab</span></div><span class="menu__row-price">från 145 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Kyckling</span></div><span class="menu__row-price">från 145 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Gyros</span></div><span class="menu__row-price">från 145 kr</span></div>
+          </div>
+          <div class="menu__cat">
+            <p class="menu__cat-title">Pita</p>
+            <h3 class="menu__cat-heading">Korean Pita</h3>
+            <p class="menu__cat-desc">Gochujangsås, kålmix, picklad gurka, picklad rödlök, kimchi, rostad lök</p>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Kebab</span></div><span class="menu__row-price">från 149 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Kyckling</span></div><span class="menu__row-price">från 149 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Gyros</span></div><span class="menu__row-price">från 149 kr</span></div>
+          </div>
+          <div class="menu__cat">
+            <p class="menu__cat-title">Pita</p>
+            <h3 class="menu__cat-heading">Klassisk Pita</h3>
+            <p class="menu__cat-desc">Isbergssallad, tomat, rödlök, valfri sås, toppas med gräslök &amp; rostad lök</p>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Kebab</span></div><span class="menu__row-price">från 145 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Kyckling</span></div><span class="menu__row-price">från 145 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Gyros</span></div><span class="menu__row-price">från 145 kr</span></div>
+          </div>
         </div>
+      </div>
+
+      <!-- SALLAD -->
+      <div class="menu__panel" id="tab-sallad">
+        <div class="menu__panel-grid">
+          <div class="menu__cat menu__cat--wide">
+            <p class="menu__cat-title">Sallad</p>
+            <h3 class="menu__cat-heading">Sallad</h3>
+            <p class="menu__cat-desc">Salladsmix, picklad rödlök, plommontomat, syrad rödkål, syrad gurka, lök och persilje-sallad, toppas med gräslök och rostad lök</p>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Kebabsallad</span></div><span class="menu__row-price">från 149 kr</span></div>
+            <div class="menu__row">
+              <div class="menu__row-info">
+                <span class="menu__row-name">Gyrossallad</span>
+                <span class="menu__row-desc">Valfri sås</span>
+              </div>
+              <span class="menu__row-price">från 149 kr</span>
+            </div>
+            <div class="menu__row">
+              <div class="menu__row-info">
+                <span class="menu__row-name">Kycklingsallad</span>
+                <span class="menu__row-desc">Valfri sås</span>
+              </div>
+              <span class="menu__row-price">från 149 kr</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PIZZA -->
+      <div class="menu__panel" id="tab-pizza">
+        <div class="menu__panel-grid">
+          <div class="menu__cat menu__cat--wide">
+            <p class="menu__cat-title">Pizza</p>
+            <h3 class="menu__cat-heading">Surdegs Pizza</h3>
+            <p class="menu__cat-desc">Surdegs pizza, tomatsås, mozzarella &amp; cheddarost-blandning</p>
+            <div class="menu__row">
+              <div class="menu__row-info">
+                <span class="menu__row-name">Kebab Pizza</span>
+                <span class="menu__row-desc">Valfri sås, toppas med gräslök</span>
+              </div>
+              <span class="menu__row-price">från 159 kr</span>
+            </div>
+            <div class="menu__row">
+              <div class="menu__row-info">
+                <span class="menu__row-name">Kyckling Pizza</span>
+                <span class="menu__row-desc">Valfri sås, toppas med gräslök</span>
+              </div>
+              <span class="menu__row-price">från 159 kr</span>
+            </div>
+            <div class="menu__row">
+              <div class="menu__row-info">
+                <span class="menu__row-name">Gyros Pizza</span>
+                <span class="menu__row-desc">Valfri sås, toppas med gräslök</span>
+              </div>
+              <span class="menu__row-price">från 159 kr</span>
+            </div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Ost-Pizza</span></div><span class="menu__row-price">från 129 kr</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FALAFEL -->
+      <div class="menu__panel" id="tab-falafel">
+        <div class="menu__panel-grid">
+          <div class="menu__cat">
+            <p class="menu__cat-title">Vegetariskt / Falafel</p>
+            <h3 class="menu__cat-heading">Sallad &amp; Tallrik</h3>
+            <div class="menu__row">
+              <div class="menu__row-info">
+                <span class="menu__row-name">Falafel sallad</span>
+                <span class="menu__row-desc">Salladsmix, picklad rödlök, rödkål, syrad gurka, lök-persiljesallad, körsbärstomat, peperoni, rostad lök och gräslök</span>
+              </div>
+              <span class="menu__row-price">från 145 kr</span>
+            </div>
+            <div class="menu__row">
+              <div class="menu__row-info">
+                <span class="menu__row-name">Falafel tallrik</span>
+                <span class="menu__row-desc">Rödkål, syrad gurka, lök-persiljesallad, peperoni, rostad lök och gräslök</span>
+              </div>
+              <span class="menu__row-price">från 145 kr</span>
+            </div>
+          </div>
+          <div class="menu__cat">
+            <p class="menu__cat-title">Vegetariskt / Falafel</p>
+            <h3 class="menu__cat-heading">Rulle</h3>
+            <div class="menu__row">
+              <div class="menu__row-info">
+                <span class="menu__row-name">Lyx rulle falafel</span>
+                <span class="menu__row-desc">Rödkål, syrad gurka, lök-persiljesallad, tomat, peperoni</span>
+              </div>
+              <span class="menu__row-price">från 145 kr</span>
+            </div>
+            <div class="menu__row">
+              <div class="menu__row-info">
+                <span class="menu__row-name">Berliner rulle falafel</span>
+                <span class="menu__row-desc">Rödkål, isbergssallad, rödlök, tomat, peperoni</span>
+              </div>
+              <span class="menu__row-price">från 139 kr</span>
+            </div>
+            <div class="menu__row">
+              <div class="menu__row-info">
+                <span class="menu__row-name">Klassisk rulle falafel</span>
+                <span class="menu__row-desc">Isbergssallad, rödlök, tomat, peperoni</span>
+              </div>
+              <span class="menu__row-price">från 139 kr</span>
+            </div>
+          </div>
+          <div class="menu__cat menu__cat--wide">
+            <p class="menu__cat-title">Vegetariskt / Falafel</p>
+            <h3 class="menu__cat-heading">Pita</h3>
+            <div class="menu__row">
+              <div class="menu__row-info">
+                <span class="menu__row-name">Lyx Pita falafel</span>
+                <span class="menu__row-desc">Rödkål, syrad gurka, lök-persiljesallad, tomat, peperoni, rostad lök och gräslök</span>
+              </div>
+              <span class="menu__row-price">från 145 kr</span>
+            </div>
+            <div class="menu__row">
+              <div class="menu__row-info">
+                <span class="menu__row-name">Berliner pita falafel</span>
+                <span class="menu__row-desc">Rödkål, isbergssallad, rödlök, tomat, peperoni, rostad lök och gräslök</span>
+              </div>
+              <span class="menu__row-price">från 139 kr</span>
+            </div>
+            <div class="menu__row">
+              <div class="menu__row-info">
+                <span class="menu__row-name">Klassisk Pita Falafel</span>
+                <span class="menu__row-desc">Isbergssallad, rödlök, tomat, peperoni, rostad lök och gräslök</span>
+              </div>
+              <span class="menu__row-price">från 139 kr</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HOT CRISPY CHICKEN -->
+      <div class="menu__panel" id="tab-hotcrispy">
+        <div class="menu__panel-grid">
+          <div class="menu__cat menu__cat--wide">
+            <p class="menu__cat-title">Hot Crispy Chicken</p>
+            <h3 class="menu__cat-heading">Hot Crispy Chicken 🍗🌶️</h3>
+            <div class="menu__row">
+              <div class="menu__row-info">
+                <span class="menu__row-name">Hot Crispy Chicken Rulle</span>
+                <span class="menu__row-desc">5 stycken hot crispy chicken, salladsmix, rödlök, tomat, picklad gurka och valfri sås</span>
+              </div>
+              <span class="menu__row-price">från 139 kr</span>
+            </div>
+            <div class="menu__row">
+              <div class="menu__row-info">
+                <span class="menu__row-name">Hot Crispy Chicken Side</span>
+                <span class="menu__row-desc">4 stycken heta och panerade kycklingfiléer</span>
+              </div>
+              <span class="menu__row-price">49 kr</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SIDES -->
+      <div class="menu__panel" id="tab-sides">
+        <div class="menu__panel-grid">
+          <div class="menu__cat">
+            <p class="menu__cat-title">Sides</p>
+            <h3 class="menu__cat-heading">Sides</h3>
+            <div class="menu__row">
+              <div class="menu__row-info">
+                <span class="menu__row-name">Snackbox</span>
+                <span class="menu__row-desc">En mix av våra sides! Ingår en burk sås. 2 Habanero, 2 Mac'n cheese, 2 Jalapeno snack, 2 Chicken fingers, 2 Hot spicy chicken</span>
+              </div>
+              <span class="menu__row-price">95 kr</span>
+            </div>
+            <div class="menu__row">
+              <div class="menu__row-info">
+                <span class="menu__row-name">Mac'n Cheese bites</span>
+                <span class="menu__row-desc">5 st trianglar fyllda med makaroner och cheese</span>
+              </div>
+              <span class="menu__row-price">45 kr</span>
+            </div>
+            <div class="menu__row">
+              <div class="menu__row-info">
+                <span class="menu__row-name">Jalapeno snacks</span>
+                <span class="menu__row-desc">5 st cream cheese-fyllda jalapeno bollar</span>
+              </div>
+              <span class="menu__row-price">45 kr</span>
+            </div>
+            <div class="menu__row">
+              <div class="menu__row-info">
+                <span class="menu__row-name">Habanero cheese nuggets</span>
+                <span class="menu__row-desc">5 st röda cheese nuggets</span>
+              </div>
+              <span class="menu__row-price">45 kr</span>
+            </div>
+          </div>
+          <div class="menu__cat">
+            <p class="menu__cat-title">Sides</p>
+            <h3 class="menu__cat-heading">&nbsp;</h3>
+            <div class="menu__row">
+              <div class="menu__row-info">
+                <span class="menu__row-name">Chicken fingers</span>
+                <span class="menu__row-desc">4 st panerade kycklinginnerfiléer</span>
+              </div>
+              <span class="menu__row-price">49 kr</span>
+            </div>
+            <div class="menu__row">
+              <div class="menu__row-info">
+                <span class="menu__row-name">Falafel</span>
+                <span class="menu__row-desc">5 st</span>
+              </div>
+              <span class="menu__row-price">39 kr</span>
+            </div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Pommes</span></div><span class="menu__row-price">35 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Sötpommes</span></div><span class="menu__row-price">49 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Bröd</span></div><span class="menu__row-price">20 kr</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- KIDS -->
+      <div class="menu__panel" id="tab-kids">
+        <div class="menu__panel-grid">
+          <div class="menu__cat menu__cat--wide">
+            <p class="menu__cat-title">Kids</p>
+            <h3 class="menu__cat-heading">Kids</h3>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Kidstallrik Kebab</span></div><span class="menu__row-price">från 89 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Kidstallrik Kyckling</span></div><span class="menu__row-price">från 89 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Kidstallrik Gyros</span></div><span class="menu__row-price">från 89 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Chicken strips</span></div><span class="menu__row-price">från 89 kr</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MILKSHAKES -->
+      <div class="menu__panel" id="tab-milkshakes">
+        <div class="menu__panel-grid">
+          <div class="menu__cat menu__cat--wide">
+            <p class="menu__cat-title">Milkshakes</p>
+            <h3 class="menu__cat-heading">Milkshakes</h3>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Salted Caramel &amp; Popcorn</span></div><span class="menu__row-price">69 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Oreo</span></div><span class="menu__row-price">69 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Lotus Biscoff</span></div><span class="menu__row-price">69 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Choklad</span></div><span class="menu__row-price">69 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Jordgubb</span></div><span class="menu__row-price">69 kr</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SÅSER -->
+      <div class="menu__panel" id="tab-saser">
+        <div class="menu__panel-grid">
+          <div class="menu__cat menu__cat--wide">
+            <p class="menu__cat-title">Kebab Såser</p>
+            <h3 class="menu__cat-heading">Kebab Såser</h3>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Mild Sås</span></div><span class="menu__row-price">15 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Mellan Sås</span></div><span class="menu__row-price">15 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Stark Sås</span></div><span class="menu__row-price">15 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Vitlökssås</span></div><span class="menu__row-price">15 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Currysås</span></div><span class="menu__row-price">15 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Chipotlesås</span></div><span class="menu__row-price">15 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Gochujang</span></div><span class="menu__row-price">15 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Stark/Vitlök</span></div><span class="menu__row-price">15 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Vitlök/Chipotle</span></div><span class="menu__row-price">15 kr</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DRYCK -->
+      <div class="menu__panel" id="tab-dryck">
+        <div class="menu__panel-grid">
+          <div class="menu__cat">
+            <p class="menu__cat-title">Dryck</p>
+            <h3 class="menu__cat-heading">Läsk</h3>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Coca-Cola Original 33cl</span></div><span class="menu__row-price">25 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Coca-Cola Zero 33cl</span></div><span class="menu__row-price">25 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Sprite 33cl</span></div><span class="menu__row-price">25 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Fanta Orange 33cl</span></div><span class="menu__row-price">25 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Fanta Exotic 33cl</span></div><span class="menu__row-price">25 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Fanta Lemon Zero 33cl</span></div><span class="menu__row-price">25 kr</span></div>
+            <div class="menu__row menu__row--sold-out">
+              <div class="menu__row-info"><span class="menu__row-name">Fanta Raspberry Zero 33cl</span></div>
+              <span class="menu__row-price"><span class="menu__sold-out-tag">Slutsålt</span></span>
+            </div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Fanta Strawberry Kiwi 33cl</span></div><span class="menu__row-price">25 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Bonaqua Citron/Lime 33cl</span></div><span class="menu__row-price">25 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Bonaqua Hallon/Lime 33cl</span></div><span class="menu__row-price">25 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Bonaqua Naturell 33cl</span></div><span class="menu__row-price">25 kr</span></div>
+          </div>
+          <div class="menu__cat">
+            <p class="menu__cat-title">Dryck</p>
+            <h3 class="menu__cat-heading">Öl &amp; Mer</h3>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Birra Moretti 0,5 (Alkoholfri)</span></div><span class="menu__row-price">45 kr</span></div>
+            <div class="menu__row menu__row--sold-out">
+              <div class="menu__row-info"><span class="menu__row-name">Briska Päron 0,5 (Alkoholfri)</span></div>
+              <span class="menu__row-price"><span class="menu__sold-out-tag">Slutsålt</span></span>
+            </div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Mer Jordgubb</span></div><span class="menu__row-price">15 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Mer Päron</span></div><span class="menu__row-price">15 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Mer Apelsin</span></div><span class="menu__row-price">15 kr</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRESENTKORT -->
+      <div class="menu__panel" id="tab-presentkort">
+        <div class="menu__panel-grid">
+          <div class="menu__cat menu__cat--wide">
+            <p class="menu__cat-title">Digitalt Presentkort</p>
+            <h3 class="menu__cat-heading">Presentkort</h3>
+            <div class="menu__row">
+              <div class="menu__row-info">
+                <span class="menu__row-name">Digitalt Presentkort</span>
+                <span class="menu__row-desc">Passa på att ge bort ett presentkort från oss till någon speciell</span>
+              </div>
+              <span class="menu__row-price">från 250 kr</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Monogram -->
+      <div class="menu__monogram" aria-hidden="true">
+        <img src="Brand_guidlines/BERRABURRA_Monogram_blue.png" alt="" class="menu__monogram-img">
+        <span class="menu__monogram-text">Berra Burra</span>
+        <img src="Brand_guidlines/BERRABURRA_Monogram_blue.png" alt="" class="menu__monogram-img">
       </div>
 
       <div class="menu__cta reveal">
@@ -1997,6 +2399,17 @@
 
     document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
+
+    // --- Meny tabs ---
+    document.querySelectorAll('.menu__tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        const target = tab.dataset.tab;
+        document.querySelectorAll('.menu__tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.menu__panel').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById('tab-' + target).classList.add('active');
+      });
+    });
 
     // --- Kontaktformulär (enkel feedback) ---
     const form = document.querySelector('.contact__form');
