@@ -35,20 +35,31 @@
 
     /* NAV */
     .nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      background: var(--cream); border-bottom: 1px solid rgba(0,35,108,0.10);
-      transition: box-shadow 0.3s;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: transparent;
+      border-bottom: 1px solid transparent;
+      transition: background 0.38s ease, border-color 0.38s ease, box-shadow 0.3s;
     }
-    .nav.scrolled { box-shadow: 0 2px 24px rgba(0,35,108,0.12); }
+    .nav.scrolled {
+      background: var(--cream);
+      border-bottom-color: rgba(0,35,108,0.10);
+      box-shadow: 0 2px 24px rgba(0,35,108,0.12);
+    }
     .nav__inner {
       max-width: 1400px; margin: 0 auto; padding: 0 32px;
       height: 76px; display: flex; align-items: center;
       justify-content: space-between; gap: 32px;
     }
     .nav__logo-link { position: relative; display: inline-block; line-height: 0; }
-    .nav__logo { height: 38px; width: auto; display: block; }
+    .nav__logo { height: 38px; width: auto; display: block; transition: opacity 0.38s ease; }
+    .nav__logo--yellow { position: absolute; top: 0; left: 0; opacity: 0; pointer-events: none; }
+    .nav:not(.scrolled) .nav__logo--blue  { opacity: 0; }
+    .nav:not(.scrolled) .nav__logo--yellow { opacity: 1; }
     .nav__links { display: flex; align-items: center; gap: 36px; list-style: none; }
-    .nav__links a { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); transition: opacity 0.2s; }
+    .nav__links a { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); transition: opacity 0.2s, color 0.38s ease; }
+    .nav:not(.scrolled) .nav__links a { color: rgba(255,255,255,0.85); }
     .nav__links a:hover { opacity: 0.5; }
     .nav__actions { display: flex; align-items: center; gap: 12px; }
     .nav__cta { background: var(--red); color: var(--white); padding: 10px 22px; font-family: var(--cond),var(--sans); font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; transition: background 0.2s; }
@@ -177,7 +188,11 @@
       .loc-gallery__inner { padding: 0 24px; }
       .loc-gallery__grid { grid-template-columns: repeat(2, 1fr); }
       .loc-footer__inner { padding: 0 24px; flex-direction: column; text-align: center; }
+      .nav__logo  { height: 20px; }
       .nav__links { display: none; }
+      .nav__cta   { display: block; font-size: 11px; padding: 9px 14px; }
+      .nav:not(.scrolled) .nav__cta { background: rgba(249,66,58,0.88); }
+      .nav:not(.scrolled) .hamburger span { background: var(--white); }
       .hamburger { display: flex; }
     }
   </style>
@@ -187,7 +202,8 @@
   <nav class="nav" id="nav">
     <div class="nav__inner">
       <a href="index.html" aria-label="Berra Burra startsida" class="nav__logo-link">
-        <img src="Brand_guidlines/BERRABURRA_Logo-1_blue.png" alt="Berra Burra" class="nav__logo">
+        <img src="Brand_guidlines/BERRABURRA_Logo-1_blue.png" alt="Berra Burra" class="nav__logo nav__logo--blue">
+        <img src="Brand_guidlines/BERRABURRA_Logo-1_yellow.png" alt="" aria-hidden="true" class="nav__logo nav__logo--yellow">
       </a>
       <ul class="nav__links">
         <li><a href="index.html#om-oss">Om oss</a></li>
