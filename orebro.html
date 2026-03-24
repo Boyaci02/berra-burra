@@ -45,12 +45,34 @@
       height: 76px; display: flex; align-items: center;
       justify-content: space-between; gap: 32px;
     }
-    .nav__logo { height: 38px; width: auto; }
+    .nav__logo-link { position: relative; display: inline-block; line-height: 0; }
+    .nav__logo { height: 38px; width: auto; display: block; }
     .nav__links { display: flex; align-items: center; gap: 36px; list-style: none; }
     .nav__links a { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); transition: opacity 0.2s; }
     .nav__links a:hover { opacity: 0.5; }
+    .nav__actions { display: flex; align-items: center; gap: 12px; }
     .nav__cta { background: var(--red); color: var(--white); padding: 10px 22px; font-family: var(--cond),var(--sans); font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; transition: background 0.2s; }
     .nav__cta:hover { background: var(--blue); }
+    .hamburger { display: none; flex-direction: column; justify-content: center; gap: 6px; width: 36px; height: 36px; padding: 4px; }
+    .hamburger span { display: block; width: 100%; height: 2px; background: var(--blue); transition: transform 0.3s, opacity 0.3s; transform-origin: center; }
+    .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    .mobile-menu { position: fixed; inset: 0; background: var(--blue); z-index: 1100; display: flex; flex-direction: column; transform: translateX(100%); transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), visibility 0.45s; visibility: hidden; pointer-events: none; }
+    .mobile-menu.open { transform: translateX(0); visibility: visible; pointer-events: all; }
+    .mobile-menu__header { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; border-bottom: 1px solid rgba(255,255,255,0.10); flex-shrink: 0; }
+    .mobile-menu__logo { height: 34px; width: auto; }
+    .mobile-menu__close { background: none; border: none; cursor: pointer; padding: 6px; color: var(--white); display: flex; align-items: center; justify-content: center; }
+    .mobile-menu__close svg { width: 28px; height: 28px; }
+    .mobile-menu__nav { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 0 32px; overflow-y: auto; }
+    .mobile-menu__nav ul { list-style: none; }
+    .mobile-menu__nav ul li { border-bottom: 1px solid rgba(255,255,255,0.12); }
+    .mobile-menu__nav ul li:first-child { border-top: 1px solid rgba(255,255,255,0.12); }
+    .mobile-menu__nav ul li a { display: block; padding: 18px 0; font-family: var(--cond),var(--sans); font-size: clamp(36px,10vw,52px); font-weight: 700; letter-spacing: 0.02em; text-transform: uppercase; color: var(--white); line-height: 1; transition: color 0.2s; }
+    .mobile-menu__nav ul li a:hover { color: var(--yellow); }
+    .mobile-menu__footer { padding: 24px 32px; border-top: 1px solid rgba(255,255,255,0.10); display: flex; gap: 28px; flex-shrink: 0; }
+    .mobile-menu__footer a { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.50); transition: color 0.2s; }
+    .mobile-menu__footer a:hover { color: var(--yellow); }
 
     /* HERO */
     .loc-hero {
@@ -156,6 +178,7 @@
       .loc-gallery__grid { grid-template-columns: repeat(2, 1fr); }
       .loc-footer__inner { padding: 0 24px; flex-direction: column; text-align: center; }
       .nav__links { display: none; }
+      .hamburger { display: flex; }
     }
   </style>
 </head>
@@ -163,18 +186,54 @@
 
   <nav class="nav" id="nav">
     <div class="nav__inner">
-      <a href="index.html" aria-label="Tillbaka till startsidan">
+      <a href="index.html" aria-label="Berra Burra startsida" class="nav__logo-link">
         <img src="Brand_guidlines/BERRABURRA_Logo-1_blue.png" alt="Berra Burra" class="nav__logo">
       </a>
       <ul class="nav__links">
         <li><a href="index.html#om-oss">Om oss</a></li>
         <li><a href="index.html#meny">Meny</a></li>
+        <li><a href="index.html#galleri">Galleri</a></li>
         <li><a href="index.html#restauranger">Restauranger</a></li>
-        <li><a href="nora.html">Norr City</a></li>
+        <li><a href="index.html#kontakt">Kontakt</a></li>
+        <li><a href="jobb.html">Jobb</a></li>
       </ul>
-      <a href="https://berraburra.qopla.com/" target="_blank" rel="noopener" class="nav__cta">Beställ online</a>
+      <div class="nav__actions">
+        <a href="https://berraburra.qopla.com/" target="_blank" rel="noopener" class="nav__cta">Beställ online</a>
+        <button class="hamburger" id="hamburger" aria-label="Öppna meny" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
     </div>
   </nav>
+
+  <!-- Mobile menu – fullscreen overlay -->
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="mobile-menu__header">
+      <img src="Brand_guidlines/BERRABURRA_Logo-1_yellow.png" alt="Berra Burra" class="mobile-menu__logo">
+      <button class="mobile-menu__close" id="menu-close" aria-label="Stäng meny">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="4" y1="4" x2="20" y2="20"/>
+          <line x1="20" y1="4" x2="4" y2="20"/>
+        </svg>
+      </button>
+    </div>
+    <nav class="mobile-menu__nav">
+      <ul>
+        <li><a href="index.html#om-oss">Om oss</a></li>
+        <li><a href="index.html#meny">Meny</a></li>
+        <li><a href="index.html#galleri">Galleri</a></li>
+        <li><a href="index.html#restauranger">Restauranger</a></li>
+        <li><a href="index.html#kontakt">Kontakt</a></li>
+        <li><a href="jobb.html">Jobb</a></li>
+      </ul>
+    </nav>
+    <div class="mobile-menu__footer">
+      <a href="https://instagram.com/berraburra" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://facebook.com/berraburra" target="_blank" rel="noopener">Facebook</a>
+    </div>
+  </div>
 
   <!-- HERO -->
   <section class="loc-hero">
@@ -277,6 +336,32 @@
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 20);
     }, { passive: true });
+
+    // Hamburger / Mobile menu
+    const btn      = document.getElementById('hamburger');
+    const mobileM  = document.getElementById('mobile-menu');
+    const closeBtn = document.getElementById('menu-close');
+
+    function openMenu() {
+      btn.classList.add('open');
+      mobileM.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+      mobileM.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      btn.classList.remove('open');
+      mobileM.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+      mobileM.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    btn.addEventListener('click', () => {
+      mobileM.classList.contains('open') ? closeMenu() : openMenu();
+    });
+    closeBtn.addEventListener('click', closeMenu);
+    mobileM.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
   </script>
 </body>
 </html>
