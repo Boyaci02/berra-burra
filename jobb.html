@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jobba hos oss – Berra Burra</title>
+  <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===========================
+       FONTS – FLAMA
+    =========================== */
+    @font-face {
+      font-family: 'Flama';
+      src: url('Brand_guidlines/Flama-Book.otf') format('opentype');
+      font-weight: 300;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Flama';
+      src: url('Brand_guidlines/Flama-Basic.otf') format('opentype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Flama';
+      src: url('Brand_guidlines/Flama-Medium.otf') format('opentype');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Flama';
+      src: url('Brand_guidlines/Flama-Semibold.otf') format('opentype');
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Flama';
+      src: url('Brand_guidlines/Flama-Bold.otf') format('opentype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Flama';
+      src: url('Brand_guidlines/Flama-Black.otf') format('opentype');
+      font-weight: 900;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FlamaCondensed';
+      src: url('Brand_guidlines/FlamaCondensed-Bold.otf') format('opentype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FlamaCondensed';
+      src: url('Brand_guidlines/FlamaCondensed-Medium.otf') format('opentype');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    /* ===========================
+       VARIABLER / BRAND-FÄRGER
+    =========================== */
+    :root {
+      --blue:   #00236C;
+      --yellow: #FFD680;
+      --cream:  #FFF5CC;
+      --red:    #F9423A;
+      --white:  #FFFFFF;
+      --black:  #000000;
+      --sans:   'Flama', 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --cond:   'FlamaCondensed', 'Inter Condensed', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --script: 'Pacifico', cursive;
+    }
+
+    /* ===========================
+       RESET & BAS
+    =========================== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--sans);
+      background: var(--cream);
+      color: var(--blue);
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    /* ===========================
+       TYPOGRAFI-HJÄLPARE
+    =========================== */
+    .label {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      opacity: 0.5;
+    }
+    .heading {
+      font-family: var(--cond), var(--sans);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      line-height: 1.05;
+    }
+
+    /* ===========================
+       KNAPPAR
+    =========================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 36px;
+      font-family: var(--cond), var(--sans);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: all 0.22s ease;
+      white-space: nowrap;
+    }
+    .btn-blue   { background: var(--blue);   color: var(--yellow); }
+    .btn-blue:hover { background: #001a52; }
+    .btn-yellow { background: var(--yellow); color: var(--blue);   }
+    .btn-yellow:hover { background: #ffc940; }
+    .btn-red    { background: var(--red);    color: var(--white);  }
+    .btn-red:hover { background: #d93530; }
+    .btn-outline-yellow {
+      background: transparent;
+      color: var(--yellow);
+      border: 2px solid var(--yellow);
+    }
+    .btn-outline-yellow:hover {
+      background: var(--yellow);
+      color: var(--blue);
+    }
+
+    /* ===========================
+       NAVIGERING
+    =========================== */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: var(--cream);
+      border-bottom: 1px solid rgba(0,35,108,0.10);
+      box-shadow: 0 2px 24px rgba(0,35,108,0.08);
+      transition: background 0.38s ease, border-color 0.38s ease, box-shadow 0.3s;
+    }
+    .nav__inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 32px;
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+    .nav__logo-link { position: relative; display: inline-block; line-height: 0; }
+    .nav__logo { height: 38px; width: auto; display: block; }
+
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav__links a {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue);
+      transition: opacity 0.2s;
+    }
+    .nav__links a:hover { opacity: 0.5; }
+    .nav__links a.active {
+      border-bottom: 2px solid var(--blue);
+      padding-bottom: 2px;
+    }
+    .nav__actions { display: flex; align-items: center; gap: 12px; }
+    .nav__cta {
+      background: var(--red);
+      color: var(--white);
+      padding: 10px 22px;
+      font-family: var(--cond), var(--sans);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: background 0.2s;
+    }
+    .nav__cta:hover { background: var(--blue); }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 6px;
+      width: 36px;
+      height: 36px;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: var(--blue);
+      transition: transform 0.3s, opacity 0.3s;
+      transform-origin: center;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    /* Mobile menu */
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      background: var(--blue);
+      z-index: 1100;
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.45s;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .mobile-menu.open {
+      transform: translateX(0);
+      visibility: visible;
+      pointer-events: all;
+    }
+    .mobile-menu__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+      flex-shrink: 0;
+    }
+    .mobile-menu__logo { height: 34px; width: auto; }
+    .mobile-menu__close {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .mobile-menu__close svg { width: 28px; height: 28px; }
+    .mobile-menu__nav {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 32px;
+      overflow-y: auto;
+    }
+    .mobile-menu__nav ul { list-style: none; }
+    .mobile-menu__nav ul li { border-bottom: 1px solid rgba(255,255,255,0.12); }
+    .mobile-menu__nav ul li:first-child { border-top: 1px solid rgba(255,255,255,0.12); }
+    .mobile-menu__nav ul li a {
+      display: block;
+      padding: 18px 0;
+      font-family: var(--cond), var(--sans);
+      font-size: clamp(36px, 10vw, 52px);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--white);
+      line-height: 1;
+      transition: color 0.2s;
+    }
+    .mobile-menu__nav ul li a:hover { color: var(--yellow); }
+    .mobile-menu__nav ul li a.active { color: var(--yellow); }
+    .mobile-menu__footer {
+      padding: 24px 32px;
+      border-top: 1px solid rgba(255,255,255,0.10);
+      display: flex;
+      gap: 28px;
+      flex-shrink: 0;
+    }
+    .mobile-menu__footer a {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.50);
+      transition: color 0.2s;
+    }
+    .mobile-menu__footer a:hover { color: var(--yellow); }
+
+    /* ===========================
+       HERO (JOBB)
+    =========================== */
+    .jobb-hero {
+      background: var(--blue);
+      padding: 140px 0 120px;
+      position: relative;
+      overflow: hidden;
+    }
+    .jobb-hero::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      right: -120px;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: rgba(255,214,128,0.05);
+      pointer-events: none;
+    }
+    .jobb-hero__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 64px;
+      position: relative;
+      z-index: 1;
+    }
+    .jobb-hero__label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,214,128,0.5);
+      margin-bottom: 20px;
+    }
+    .jobb-hero__greeting {
+      font-family: var(--script);
+      font-size: clamp(36px, 5vw, 60px);
+      color: var(--yellow);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+    .jobb-hero__title {
+      font-family: var(--cond), var(--sans);
+      font-weight: 700;
+      font-size: clamp(56px, 8vw, 120px);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      line-height: 0.92;
+      color: var(--white);
+      margin-bottom: 32px;
+    }
+    .jobb-hero__sub {
+      font-size: clamp(15px, 1.5vw, 18px);
+      color: rgba(255,255,255,0.72);
+      line-height: 1.6;
+      max-width: 520px;
+      margin-bottom: 48px;
+    }
+
+    /* ===========================
+       VARFÖR BERRA BURRA
+    =========================== */
+    .varf {
+      background: var(--cream);
+      padding: 120px 0;
+    }
+    .varf__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 64px;
+    }
+    .varf__header {
+      margin-bottom: 64px;
+    }
+    .varf__label { margin-bottom: 16px; }
+    .varf__title {
+      font-size: clamp(36px, 5vw, 64px);
+      color: var(--blue);
+    }
+    .varf__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .varf__card {
+      background: var(--white);
+      border: 1px solid rgba(0,35,108,0.08);
+      padding: 44px;
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+    .varf__card:hover {
+      box-shadow: 0 12px 40px rgba(0,35,108,0.10);
+      transform: translateY(-4px);
+    }
+    .varf__card-icon {
+      font-size: 36px;
+      margin-bottom: 20px;
+      line-height: 1;
+    }
+    .varf__card-title {
+      font-family: var(--cond), var(--sans);
+      font-size: 22px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--blue);
+      margin-bottom: 12px;
+    }
+    .varf__card-text {
+      font-size: 15px;
+      color: var(--blue);
+      opacity: 0.7;
+      line-height: 1.65;
+    }
+
+    /* ===========================
+       ANSÖKAN (återanvänder contact-stil)
+    =========================== */
+    .ansok {
+      background: var(--blue);
+      padding: 120px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .ansok__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 64px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: start;
+      position: relative;
+      z-index: 1;
+    }
+    .ansok__label { color: rgba(255,214,128,0.5); margin-bottom: 16px; }
+    .ansok__title {
+      font-size: clamp(36px, 4.5vw, 64px);
+      color: var(--yellow);
+      margin-bottom: 24px;
+    }
+    .ansok__sub {
+      font-size: 15px;
+      color: rgba(255,214,128,0.65);
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+    .ansok__info-item {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      margin-bottom: 28px;
+    }
+    .ansok__info-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255,214,128,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .ansok__info-detail-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,214,128,0.4);
+      margin-bottom: 6px;
+    }
+    .ansok__info-detail-value {
+      font-size: 16px;
+      color: var(--yellow);
+    }
+    .ansok__info-detail-value a { transition: opacity 0.2s; }
+    .ansok__info-detail-value a:hover { opacity: 0.7; }
+
+    /* Formulär */
+    .ansok__form {
+      background: rgba(255,214,128,0.05);
+      border: 1px solid rgba(255,214,128,0.12);
+      padding: 48px;
+    }
+    .ansok__form-title {
+      font-family: var(--cond), var(--sans);
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--yellow);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 32px;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { margin-bottom: 18px; }
+    .form-group label {
+      display: block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,214,128,0.45);
+      margin-bottom: 8px;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      background: rgba(255,214,128,0.06);
+      border: 1px solid rgba(255,214,128,0.18);
+      color: var(--yellow);
+      padding: 14px 16px;
+      font-family: var(--sans);
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: rgba(255,214,128,0.25); }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus { border-color: rgba(255,214,128,0.5); }
+    .form-group textarea { height: 160px; resize: none; }
+    .form-group select option { background: var(--blue); color: var(--yellow); }
+    .select-wrap {
+      position: relative;
+    }
+    .select-wrap::after {
+      content: '▾';
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(255,214,128,0.45);
+      pointer-events: none;
+      font-size: 14px;
+    }
+    .form-submit { width: 100%; margin-top: 8px; }
+
+    /* ===========================
+       FOOTER
+    =========================== */
+    .footer {
+      background: var(--blue);
+      border-top: 1px solid rgba(255,214,128,0.12);
+      padding: 72px 0 40px;
+    }
+    .footer__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 64px;
+    }
+    .footer__grid {
+      display: grid;
+      grid-template-columns: 220px 1fr 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 64px;
+    }
+    .footer__logo { height: 64px; width: auto; margin-bottom: 20px; }
+    .footer__brand-tagline {
+      font-size: 12px;
+      color: rgba(255,214,128,0.35);
+      line-height: 1.6;
+    }
+    .footer__col-title {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,214,128,0.4);
+      margin-bottom: 20px;
+    }
+    .footer__col ul { list-style: none; }
+    .footer__col ul li { margin-bottom: 10px; }
+    .footer__col ul li a {
+      font-size: 14px;
+      color: rgba(255,214,128,0.65);
+      transition: color 0.2s;
+    }
+    .footer__col ul li a:hover { color: var(--yellow); }
+    .footer__bottom {
+      border-top: 1px solid rgba(255,214,128,0.1);
+      padding-top: 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer__copy { font-size: 12px; color: rgba(255,214,128,0.3); }
+    .footer__socials { display: flex; gap: 20px; }
+    .footer__socials a {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,214,128,0.4);
+      transition: color 0.2s;
+    }
+    .footer__socials a:hover { color: var(--yellow); }
+
+    /* ===========================
+       SCROLL REVEAL
+    =========================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    /* ===========================
+       LADDNINGSSKÄRM
+    =========================== */
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: var(--blue);
+      z-index: 99999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      transition: opacity 0.55s ease, visibility 0.55s ease;
+    }
+    #loader.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .loader__logo {
+      width: min(260px, 62vw);
+      animation: loaderIn 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    .loader__bar-wrap {
+      width: min(220px, 52vw);
+      height: 2px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .loader__bar {
+      height: 100%;
+      width: 0;
+      background: var(--yellow);
+      border-radius: 2px;
+      animation: loaderBar 1.3s cubic-bezier(0.22, 1, 0.36, 1) 0.25s forwards;
+    }
+    @keyframes loaderIn {
+      from { opacity: 0; transform: scale(0.88); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    @keyframes loaderBar {
+      from { width: 0; }
+      to   { width: 100%; }
+    }
+
+    /* ===========================
+       RESPONSIVT
+    =========================== */
+    @media (max-width: 1100px) {
+      .jobb-hero__inner,
+      .varf__inner,
+      .ansok__inner,
+      .footer__inner { padding: 0 40px; }
+      .footer__grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .nav__inner { padding: 0 16px; gap: 12px; }
+      .nav__logo  { height: 20px; }
+      .nav__links { display: none; }
+      .nav__cta   { font-size: 11px; padding: 9px 14px; }
+      .hamburger  { display: flex; }
+
+      .jobb-hero { padding: 120px 0 80px; }
+      .jobb-hero__inner { padding: 0 24px; }
+      .jobb-hero__title { line-height: 0.95; }
+
+      .varf { padding: 80px 0; }
+      .varf__inner { padding: 0 24px; }
+      .varf__grid { grid-template-columns: 1fr; }
+      .varf__card { padding: 32px; }
+
+      .ansok { padding: 80px 0; }
+      .ansok__inner { grid-template-columns: 1fr; gap: 48px; padding: 0 24px; }
+      .ansok__form { padding: 32px 24px; }
+      .form-row { grid-template-columns: 1fr; }
+
+      .footer__inner { padding: 0 24px; }
+      .footer { padding: 60px 0 40px; }
+      .footer__grid { grid-template-columns: 1fr; gap: 36px; }
+      .footer__bottom { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Laddningsskärm -->
+  <div id="loader" aria-hidden="true">
+    <img src="Brand_guidlines/BERRABURRA_Logo-2_yellow.png" alt="Berra Burra" class="loader__logo">
+    <div class="loader__bar-wrap">
+      <div class="loader__bar"></div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       NAVIGERING
+  ============================================================ -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" aria-label="Berra Burra startsida" class="nav__logo-link">
+        <img src="Brand_guidlines/BERRABURRA_Logo-1_blue.png" alt="Berra Burra" class="nav__logo">
+      </a>
+      <ul class="nav__links">
+        <li><a href="index.html#om-oss">Om oss</a></li>
+        <li><a href="index.html#meny">Meny</a></li>
+        <li><a href="index.html#galleri">Galleri</a></li>
+        <li><a href="index.html#restauranger">Restauranger</a></li>
+        <li><a href="index.html#kontakt">Kontakt</a></li>
+        <li><a href="jobb.html" class="active">Jobb</a></li>
+      </ul>
+      <div class="nav__actions">
+        <a href="https://berraburra.qopla.com/" target="_blank" rel="noopener" class="nav__cta">Beställ online</a>
+        <button class="hamburger" id="hamburger" aria-label="Öppna meny" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="mobile-menu__header">
+      <img src="Brand_guidlines/BERRABURRA_Logo-1_yellow.png" alt="Berra Burra" class="mobile-menu__logo">
+      <button class="mobile-menu__close" id="menu-close" aria-label="Stäng meny">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="4" y1="4" x2="20" y2="20"/>
+          <line x1="20" y1="4" x2="4" y2="20"/>
+        </svg>
+      </button>
+    </div>
+    <nav class="mobile-menu__nav">
+      <ul>
+        <li><a href="index.html#om-oss">Om oss</a></li>
+        <li><a href="index.html#meny">Meny</a></li>
+        <li><a href="index.html#galleri">Galleri</a></li>
+        <li><a href="index.html#restauranger">Restauranger</a></li>
+        <li><a href="index.html#kontakt">Kontakt</a></li>
+        <li><a href="jobb.html" class="active">Jobb</a></li>
+      </ul>
+    </nav>
+    <div class="mobile-menu__footer">
+      <a href="https://instagram.com/berra.burra" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://facebook.com/profile.php?id=61556398685993&locale=sv_SE" target="_blank" rel="noopener">Facebook</a>
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section class="jobb-hero">
+    <div class="jobb-hero__inner">
+      <p class="jobb-hero__label">Karriär</p>
+      <p class="jobb-hero__greeting">Hej!</p>
+      <h1 class="jobb-hero__title">Jobba<br>hos oss</h1>
+      <p class="jobb-hero__sub">Vi söker alltid passionerade människor som delar vår kärlek till riktigt bra kebab. Är du redo att bli en del av familjen?</p>
+      <a href="#ansok" class="btn btn-yellow">Skicka din ansökan</a>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       VARFÖR BERRA BURRA?
+  ============================================================ -->
+  <section class="varf">
+    <div class="varf__inner">
+      <div class="varf__header">
+        <p class="label varf__label reveal">Varför oss?</p>
+        <h2 class="heading varf__title reveal">Mer än ett jobb</h2>
+      </div>
+      <div class="varf__grid">
+        <div class="varf__card reveal">
+          <div class="varf__card-icon">🤝</div>
+          <div class="varf__card-title">Gemenskap</div>
+          <p class="varf__card-text">Vi är ett tight team som tar hand om varandra. Hos oss är alla välkomna, oavsett bakgrund eller erfarenhet.</p>
+        </div>
+        <div class="varf__card reveal reveal-delay-1">
+          <div class="varf__card-icon">🥙</div>
+          <div class="varf__card-title">Lär dig hantverket</div>
+          <p class="varf__card-text">Riktig kebab, riktiga råvaror och recept som hållits vid liv sedan 1997. Du lär dig göra saker på riktigt.</p>
+        </div>
+        <div class="varf__card reveal reveal-delay-2">
+          <div class="varf__card-icon">⏰</div>
+          <div class="varf__card-title">Flexibla tider</div>
+          <p class="varf__card-text">Vi anpassar oss efter din vardag. Studerar du? Har du familj? Vi hittar ett upplägg som fungerar för dig.</p>
+        </div>
+        <div class="varf__card reveal reveal-delay-3">
+          <div class="varf__card-icon">🏆</div>
+          <div class="varf__card-title">Stolt historia</div>
+          <p class="varf__card-text">Sedan 1997 har Berra och Burra byggt något att vara stolta över. Nu vill vi att du är med och fortsätter det.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       ANSÖKAN
+  ============================================================ -->
+  <section class="ansok" id="ansok">
+    <div class="ansok__inner">
+
+      <!-- Vänster: Info -->
+      <div>
+        <p class="label ansok__label reveal">Ansökan</p>
+        <h2 class="heading ansok__title reveal">Bli en del<br>av teamet</h2>
+        <p class="ansok__sub reveal">Fyll i formuläret så hör vi av oss så snart vi kan. Du kan även skicka din ansökan direkt till oss via e-post.</p>
+
+        <div class="ansok__info-item reveal">
+          <div class="ansok__info-icon">✉️</div>
+          <div>
+            <div class="ansok__info-detail-label">E-post</div>
+            <div class="ansok__info-detail-value">
+              <a href="mailto:jobb@berraburra.se">jobb@berraburra.se</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="ansok__info-item reveal">
+          <div class="ansok__info-icon">📍</div>
+          <div>
+            <div class="ansok__info-detail-label">Restaurang</div>
+            <div class="ansok__info-detail-value">Nora</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Höger: Formulär -->
+      <div class="reveal">
+        <form class="ansok__form" id="ansok-form" novalidate>
+          <h3 class="ansok__form-title">Ansök nu</h3>
+
+          <div class="form-group">
+            <label for="namn">Namn</label>
+            <input type="text" id="namn" name="namn" placeholder="Ditt namn" autocomplete="name">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="epost">E-post</label>
+              <input type="email" id="epost" name="epost" placeholder="din@email.se" autocomplete="email">
+            </div>
+            <div class="form-group">
+              <label for="telefon">Telefon</label>
+              <input type="tel" id="telefon" name="telefon" placeholder="07X XXX XX XX" autocomplete="tel">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="restaurang">Vilken restaurang?</label>
+            <div class="select-wrap">
+              <select id="restaurang" name="restaurang">
+                <option value="nora">Nora</option>
+                <option value="spelar-ingen-roll">Spelar ingen roll</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="roll">Vad är du intresserad av?</label>
+            <input type="text" id="roll" name="roll" placeholder="T.ex. kökspersonal, kassörska, ledning...">
+          </div>
+
+          <div class="form-group">
+            <label for="om-dig">Berätta om dig</label>
+            <textarea id="om-dig" name="om-dig" placeholder="Lite om dig själv, varför du vill jobba hos oss och vad du kan bidra med..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-yellow form-submit">Skicka ansökan</button>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__grid">
+        <!-- Brand -->
+        <div class="footer__col">
+          <img src="Brand_guidlines/BERRABURRA_Logo-2_yellow.png" alt="Berra Burra" class="footer__logo">
+          <p class="footer__brand-tagline">Kebab med kärlek och hantverk sedan 1997 i Nora.</p>
+        </div>
+        <!-- Navigering -->
+        <div class="footer__col">
+          <div class="footer__col-title">Navigering</div>
+          <ul>
+            <li><a href="index.html#om-oss">Om oss</a></li>
+            <li><a href="index.html#meny">Meny</a></li>
+            <li><a href="index.html#galleri">Galleri</a></li>
+            <li><a href="index.html#restauranger">Restauranger</a></li>
+            <li><a href="index.html#kontakt">Kontakt</a></li>
+            <li><a href="jobb.html">Jobb</a></li>
+          </ul>
+        </div>
+        <!-- Beställ -->
+        <div class="footer__col">
+          <div class="footer__col-title">Beställ</div>
+          <ul>
+            <li><a href="https://berraburra.qopla.com/" target="_blank" rel="noopener">Beställ online</a></li>
+            <li><a href="#">Wolt</a></li>
+            <li><a href="#">Takeaway</a></li>
+          </ul>
+        </div>
+        <!-- Kontakt -->
+        <div class="footer__col">
+          <div class="footer__col-title">Kontakt</div>
+          <ul>
+            <li><a href="mailto:info@berraburra.se">info@berraburra.se</a></li>
+            <li><a href="https://www.instagram.com/berra.burra/" target="_blank" rel="noopener">@berra.burra</a></li>
+            <li><a href="#">berraburra.se</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__copy">© 2026 Berra Burra. Alla rättigheter förbehållna.</p>
+        <div class="footer__socials">
+          <a href="https://www.instagram.com/berra.burra/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.facebook.com/profile.php?id=61556398685993&locale=sv_SE" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://www.tiktok.com/@b.b.kebab" target="_blank" rel="noopener">TikTok</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // --- Hamburger / Mobile menu ---
+    const btn     = document.getElementById('hamburger');
+    const mobileM = document.getElementById('mobile-menu');
+    const closeBtn = document.getElementById('menu-close');
+
+    function openMenu() {
+      btn.classList.add('open');
+      mobileM.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+      mobileM.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      btn.classList.remove('open');
+      mobileM.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+      mobileM.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    btn.addEventListener('click', () => {
+      mobileM.classList.contains('open') ? closeMenu() : openMenu();
+    });
+    closeBtn.addEventListener('click', closeMenu);
+
+    mobileM.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', closeMenu);
+    });
+
+    // --- Laddningsskärm ---
+    const loader = document.getElementById('loader');
+    window.addEventListener('load', () => {
+      setTimeout(() => loader.classList.add('hidden'), 1500);
+    });
+
+    // --- Scroll reveal ---
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+    // --- Ansökningsformulär ---
+    const form = document.getElementById('ansok-form');
+    if (form) {
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        const submitBtn = form.querySelector('button[type="submit"]');
+        submitBtn.textContent = 'Ansökan skickad! ✓';
+        submitBtn.disabled = true;
+        submitBtn.style.opacity = '0.7';
+        setTimeout(() => {
+          submitBtn.textContent = 'Skicka ansökan';
+          submitBtn.disabled = false;
+          submitBtn.style.opacity = '';
+          form.reset();
+        }, 3000);
+      });
+    }
+  </script>
+</body>
+</html>
