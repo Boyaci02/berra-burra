@@ -2369,6 +2369,112 @@
       });
     }
   </script>
+  <!-- Norr City popup -->
+  <style>
+    #norrcity-backdrop {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,35,108,0.55);
+      backdrop-filter: blur(4px);
+      z-index: 9000;
+      animation: bbFadeIn 0.3s ease;
+    }
+    #norrcity-backdrop.open { display: flex; align-items: center; justify-content: center; padding: 1.5rem; }
+    #norrcity-popup {
+      background: var(--cream);
+      border-radius: 12px;
+      padding: 2.5rem 2rem 2rem;
+      max-width: 440px; width: 100%;
+      position: relative;
+      box-shadow: 0 24px 64px rgba(0,35,108,0.25);
+      animation: bbSlideUp 0.4s cubic-bezier(0.16,1,0.3,1);
+      text-align: center;
+    }
+    #norrcity-popup .popup-badge {
+      display: inline-block;
+      background: var(--red); color: var(--white);
+      font-size: 0.6rem; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      padding: 0.35rem 0.85rem; border-radius: 20px;
+      margin-bottom: 1.25rem;
+    }
+    #norrcity-popup h2 {
+      font-family: 'FlamaCondensed','Inter',sans-serif;
+      font-size: clamp(1.6rem, 5vw, 2.2rem);
+      font-weight: 700; text-transform: uppercase;
+      color: var(--blue); line-height: 1.1;
+      margin-bottom: 0.75rem;
+    }
+    #norrcity-popup p {
+      font-size: 0.92rem; line-height: 1.65;
+      color: rgba(0,35,108,0.65);
+      margin-bottom: 1.75rem;
+    }
+    #norrcity-popup .popup-cta {
+      display: inline-block;
+      background: var(--blue); color: var(--yellow);
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      padding: 0.95rem 2.2rem; border-radius: 4px;
+      transition: background 0.2s;
+      width: 100%;
+    }
+    #norrcity-popup .popup-cta:hover { background: #001a52; }
+    #norrcity-popup .popup-close {
+      position: absolute; top: 0.9rem; right: 1rem;
+      font-size: 1.3rem; color: rgba(0,35,108,0.35);
+      padding: 0.3rem 0.5rem; transition: color 0.2s;
+    }
+    #norrcity-popup .popup-close:hover { color: var(--blue); }
+    #norrcity-popup .popup-skip {
+      display: block; margin-top: 1rem;
+      font-size: 0.72rem; color: rgba(0,35,108,0.4);
+      cursor: pointer; background: none; border: none;
+      font-family: inherit; text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    @keyframes bbFadeIn { from { opacity: 0 } to { opacity: 1 } }
+    @keyframes bbSlideUp { from { opacity: 0; transform: translateY(20px) } to { opacity: 1; transform: none } }
+  </style>
+
+  <div id="norrcity-backdrop">
+    <div id="norrcity-popup" role="dialog" aria-modal="true" aria-labelledby="popup-heading">
+      <button class="popup-close" id="popupClose" aria-label="Stäng">×</button>
+      <span class="popup-badge">Nyöppnat</span>
+      <h2 id="popup-heading">Vi har öppnat<br />på Norr City!</h2>
+      <p>Nu finns Berra Burra även i Norr City. Beställ online och hämta upp i restaurangen — eller låt oss leverera hem till dig.</p>
+      <a href="https://berraburra.qopla.com/" target="_blank" rel="noopener" class="popup-cta" id="popupCta">Beställ online nu →</a>
+      <button class="popup-skip" id="popupSkip">Kanske senare</button>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      var backdrop = document.getElementById('norrcity-backdrop');
+      var closeBtn = document.getElementById('popupClose');
+      var skipBtn  = document.getElementById('popupSkip');
+
+      function closePopup() {
+        backdrop.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      setTimeout(function() {
+        backdrop.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }, 2000);
+
+      closeBtn.addEventListener('click', closePopup);
+      skipBtn.addEventListener('click', closePopup);
+      backdrop.addEventListener('click', function(e) {
+        if (e.target === backdrop) closePopup();
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closePopup();
+      });
+    })();
+  </script>
+
   <!-- Vercel Analytics -->
   <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
   <script defer src="/_vercel/insights/script.js"></script>
