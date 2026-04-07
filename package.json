@@ -1,0 +1,11 @@
+{
+  "name": "web-design-agent",
+  "private": true,
+  "scripts": {
+    "screenshot": "node screenshot.js"
+  },
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1",
+    "puppeteer": "^24.39.1"
+  }
+}
