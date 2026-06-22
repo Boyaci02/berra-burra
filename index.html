@@ -1108,6 +1108,18 @@
     .reveal-delay-2 { transition-delay: 0.2s; }
     .reveal-delay-3 { transition-delay: 0.3s; }
 
+    /* Säkerhet: innehåll får ALDRIG fastna osynligt om observer ej triggar
+       eller besökaren har reducerad rörelse på. */
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+    }
+
+    /* Visuellt dold men läsbar för skärmläsare + sökmotorer (H1) */
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
     /* ===========================
        HERO – MATBILD KORT
     =========================== */
@@ -1413,6 +1425,7 @@
       to   { width: 100%; }
     }
   </style>
+  <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
 </head>
 <body>
 
@@ -1490,6 +1503,7 @@
     <div class="hero__main">
       <!-- Vänster: Text -->
       <div class="hero__text">
+        <h1 class="sr-only">Berra Burra – kebab med hjärta och hantverk sedan 1997, Nora</h1>
         <div class="hero__est">
           <span class="hero__est-line"></span>
           <span class="hero__est-label label">Kebab sedan 1997 · Nora</span>
@@ -2318,6 +2332,12 @@
     }, revealOpts);
 
     document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+    // Skyddsnät: om observern inte hinner/triggar — tvinga fram allt efter 2.5s
+    // så inget innehåll någonsin fastnar osynligt (opacity:0).
+    setTimeout(() => {
+      document.querySelectorAll('.reveal:not(.visible)').forEach(el => el.classList.add('visible'));
+    }, 2500);
 
 
     // --- Meny tabs ---
