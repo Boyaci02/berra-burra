@@ -683,6 +683,18 @@
       margin: 0 auto;
       padding: 0 64px;
     }
+    .menu__deal {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 10px 18px;
+      background: #FFD680;
+      color: #00236C;
+      font-family: var(--cond);
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: 0.02em;
+      border-radius: 999px;
+    }
     .menu__header {
       display: flex;
       align-items: flex-end;
@@ -1619,6 +1631,7 @@
         <div class="menu__title-wrap reveal">
           <div class="menu__script">Meny</div>
           <p class="menu__subtitle">Beställ i restaurangen eller online</p>
+          <p class="menu__deal">Just nu: dryck ingår till samtliga rätter</p>
         </div>
         <a href="https://berraburra.qopla.com/" target="_blank" rel="noopener" class="btn btn-blue reveal">Beställ online</a>
       </div>
@@ -1864,10 +1877,10 @@
             </div>
             <div class="menu__row">
               <div class="menu__row-info">
-                <span class="menu__row-name">Hot Crispy Chicken Side</span>
-                <span class="menu__row-desc">4 stycken heta och panerade kycklingfiléer</span>
+                <span class="menu__row-name">Spicy Tenders</span>
+                <span class="menu__row-desc">4 stycken heta och panerade kycklingfiléer, ingår en burk sås</span>
               </div>
-              <span class="menu__row-price">49 kr</span>
+              <span class="menu__row-price">59 kr</span>
             </div>
           </div>
         </div>
@@ -1889,23 +1902,30 @@
             <div class="menu__row">
               <div class="menu__row-info">
                 <span class="menu__row-name">Mac'n Cheese bites</span>
-                <span class="menu__row-desc">5 st trianglar fyllda med makaroner och cheese</span>
+                <span class="menu__row-desc">4 st trianglar fyllda med makaroner och cheese</span>
               </div>
-              <span class="menu__row-price">45 kr</span>
+              <span class="menu__row-price">39 kr</span>
             </div>
             <div class="menu__row">
               <div class="menu__row-info">
                 <span class="menu__row-name">Jalapeno snacks</span>
-                <span class="menu__row-desc">5 st cream cheese-fyllda jalapeno bollar</span>
+                <span class="menu__row-desc">4 st cream cheese-fyllda jalapeno bollar</span>
               </div>
-              <span class="menu__row-price">45 kr</span>
+              <span class="menu__row-price">39 kr</span>
             </div>
             <div class="menu__row">
               <div class="menu__row-info">
                 <span class="menu__row-name">Habanero cheese nuggets</span>
-                <span class="menu__row-desc">5 st röda cheese nuggets</span>
+                <span class="menu__row-desc">4 st röda cheese nuggets</span>
               </div>
-              <span class="menu__row-price">45 kr</span>
+              <span class="menu__row-price">39 kr</span>
+            </div>
+            <div class="menu__row">
+              <div class="menu__row-info">
+                <span class="menu__row-name">Cheese Mix</span>
+                <span class="menu__row-desc">2 Mac'n Cheese, 2 Habanero Cheese, 2 Jalapeno Snack</span>
+              </div>
+              <span class="menu__row-price">55 kr</span>
             </div>
           </div>
           <div class="menu__cat">
@@ -1914,9 +1934,23 @@
             <div class="menu__row">
               <div class="menu__row-info">
                 <span class="menu__row-name">Chicken fingers</span>
-                <span class="menu__row-desc">4 st panerade kycklinginnerfiléer</span>
+                <span class="menu__row-desc">4 st panerade kycklinginnerfiléer, ingår en burk sås</span>
               </div>
-              <span class="menu__row-price">49 kr</span>
+              <span class="menu__row-price">59 kr</span>
+            </div>
+            <div class="menu__row">
+              <div class="menu__row-info">
+                <span class="menu__row-name">Spicy Wings</span>
+                <span class="menu__row-desc">4 st krispiga kycklingvingar med het och kryddig smak, ingår en burk sås</span>
+              </div>
+              <span class="menu__row-price">59 kr</span>
+            </div>
+            <div class="menu__row">
+              <div class="menu__row-info">
+                <span class="menu__row-name">Chicken Mix</span>
+                <span class="menu__row-desc">6 bitar av våra chicken sides, ingår en burk sås</span>
+              </div>
+              <span class="menu__row-price">89 kr</span>
             </div>
             <div class="menu__row">
               <div class="menu__row-info">
@@ -1938,10 +1972,11 @@
           <div class="menu__cat menu__cat--wide">
             <p class="menu__cat-title">Kids</p>
             <h3 class="menu__cat-heading">Kids</h3>
-            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Kidstallrik Kebab</span></div><span class="menu__row-price">från 89 kr</span></div>
-            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Kidstallrik Kyckling</span></div><span class="menu__row-price">från 89 kr</span></div>
-            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Kidstallrik Gyros</span></div><span class="menu__row-price">från 89 kr</span></div>
-            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Chicken strips</span></div><span class="menu__row-price">från 89 kr</span></div>
+            <p class="menu__cat-desc">En Mer ingår till alla kidsrätter</p>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Kidstallrik Kebab</span></div><span class="menu__row-price">från 95 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Kidstallrik Kyckling</span></div><span class="menu__row-price">från 95 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Kidstallrik Gyros</span></div><span class="menu__row-price">från 95 kr</span></div>
+            <div class="menu__row"><div class="menu__row-info"><span class="menu__row-name">Chicken strips</span></div><span class="menu__row-price">från 95 kr</span></div>
           </div>
         </div>
       </div>
